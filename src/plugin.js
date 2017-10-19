@@ -225,7 +225,7 @@ class Scene7 extends Tech {
    *    - 'maybe'
    *    - '' empty string if S7 cannot play the video
    **/
-  function(mimetype) {
+  canPlay(mimetype) {
     return mimetype === 'video/scene7' ? 'probably' : '';
   }
 

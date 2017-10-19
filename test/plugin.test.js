@@ -6,7 +6,7 @@ import videojs from 'video.js';
 
 import plugin from '../src/plugin';
 
-const Player = videojs.getComponent('Player');
+const Tech = videojs.getComponent('Tech');
 
 QUnit.test('the environment is sane', function(assert) {
   assert.strictEqual(typeof Array.isArray, 'function', 'es5 exists');
@@ -38,21 +38,19 @@ QUnit.module('videojs-scene7', {
 });
 
 QUnit.test('registers itself with video.js', function(assert) {
-  assert.expect(2);
+  assert.expect(1);
 
   assert.strictEqual(
-    typeof Player.prototype.scene7,
+    typeof Tech.getTech('Scene7'),
     'function',
-    'videojs-scene7 plugin was registered'
+    'videojs-scene7 tech plugin was registered'
   );
-
-  this.player.scene7();
 
   // Tick the clock forward enough to trigger the player to be "ready".
   this.clock.tick(1);
 
-  assert.ok(
-    this.player.hasClass('vjs-scene7'),
-    'the plugin adds a class to the player'
-  );
+  // assert.ok(
+  //   this.player.hasClass('vjs-scene7'),
+  //   'the plugin adds a class to the player'
+  // );
 });
