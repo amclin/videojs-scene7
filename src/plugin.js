@@ -29,24 +29,6 @@ const registerTech = videojs.registerTech || videojs.plugin;
 // const dom = videojs.dom || videojs;
 
 /**
- * Function to invoke when the player is ready.
- *
- * This is a great place for your plugin to initialize itself. When this
- * function is called, the player will have its DOM and child components
- * in place.
- *
- * @function onPlayerReady
- * @param    {Player} player
- *           A Video.js player object.
- *
- * @param    {Object} [options={}]
- *           A plain object containing options for the plugin.
- */
-const onPlayerReady = (player, options) => {
-  player.addClass('vjs-scene7');
-};
-
-/**
  * Scene7 Media Controller - Wrapper for Scene7 Player API
  *
  * @extends Tech
@@ -65,9 +47,8 @@ class Scene7 extends Tech {
   constructor(options, ready) {
     super(options, ready);
 
-    _loadS7SDK();
-    _setupParams();
-
+    this._loadS7SDK();
+    this._setupParams();
   }
 
   /**
