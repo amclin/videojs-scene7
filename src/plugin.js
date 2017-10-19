@@ -98,11 +98,14 @@ class Scene7 extends Tech {
     const sdk = this.s7.sdk;
     const self = this;
     /* Create an instance of the ParameterManager component to collect
-    components' configuration that can come from a viewer preset, URL, or the HTML page itself. The ParameterManager
-    component also sends a notification s7sdk.Event.SDK_READY when all needed files are loaded and the configuration
-    parameters are processed. The other components should never be initialized outside of this handler. After
-    defining the handler for the s7sdk.Event.SDK_READY event, it is safe to initiate
-    configuration initialization by calling ParameterManager.init(). */
+    components' configuration that can come from a viewer preset, URL,
+    or the HTML page itself. The ParameterManager component also sends
+    a notification s7sdk.Event.SDK_READY when all needed files are
+    loaded and the configuration parameters are processed. The other
+    components should never be initialized outside of this handler.
+    After defining the handler for the s7sdk.Event.SDK_READY event, it
+    is safe to initiate configuration initialization by calling
+    ParameterManager.init(). */
     const params = new sdk.ParameterManager();
 
     /* Setup event to call next steps when PackageManager dispatches
@@ -175,8 +178,10 @@ class Scene7 extends Tech {
 
   /**
    * Handles Scene7 resize events and triggers a resize of the video player
-   * @param {object}
-   *    - Scene7 Event object
+   *
+   * @param {Object} event
+   *        Scene7 Event object
+   *
    **/
   _resizeEventHandler(event) {
     const width = event.s7event.w;
@@ -201,8 +206,9 @@ class Scene7 extends Tech {
   /**
    * Set the Scene7 source for the player
    *
-   * @param {Object}
-   *    - Scene7 Media Set object
+   * @param {Object} asset
+   *        Scene7 Media Set object
+   *
    **/
   _setS7Source(asset) {
     const self = this;
@@ -229,9 +235,11 @@ class Scene7 extends Tech {
   /**
    * Tells VideoJS whether the Scene7 Tech can play the proposed video
    * based on the specified mime/type
-   * @param {String}
-   *    - mime/type of the video
-   * @return {String}
+   *
+   * @param {string} mimetype
+   *        mime/type of the video
+   *
+   * @return {string}
    *    - 'probably' if S7 can play the video
    *    - 'maybe'
    *    - '' empty string if S7 cannot play the video
@@ -242,6 +250,8 @@ class Scene7 extends Tech {
 
   /**
    * Starts video playback. Restarts the video if we're already at the end
+   *
+   * @return {undefined}
    **/
   play() {
     const self = this;
@@ -258,6 +268,8 @@ class Scene7 extends Tech {
 
   /**
    * Pauses video playback
+   *
+   * @return {undefined}
    **/
   pause() {
     return this.s7.player.pause();
@@ -266,7 +278,7 @@ class Scene7 extends Tech {
   /**
    * Get the current playback time
    *
-   * @return number
+   * @return {number}
    *    - seconds since beginning
    **/
   currentTime() {
@@ -354,6 +366,8 @@ class Scene7 extends Tech {
   /**
    * Requests that Scene7 Tech open full screen mode.
    * will have different behaviors on different device types
+   *
+   * @return {undefined}
    **/
   enterFullScreen() {
     return this.s7.container.requestFullScreen();
@@ -361,6 +375,8 @@ class Scene7 extends Tech {
 
   /**
    * Requests that Scene7 Tech exits full screen mode.
+   *
+   * @return {undefined}
    **/
   exitFullScreen() {
     return this.s7.container.cancelFullScreen();
@@ -410,9 +426,12 @@ class Scene7 extends Tech {
     for (const component in events) {
       events[component].forEach(function(event) {
         const splitName = event.internal.split('.');
+        const target = self.s7[component];
+        const s7Event = sdk.event[splitName[0]][splitName[1]];
+        const vjsEvent = event.external;
 
-        self.s7[component].addEventListener(sdk.event[splitName[0]][splitName[1]], function(ev) {
-          self.trigger(event.external);
+        target.addEventListener(s7Event, function(ev) {
+          self.trigger(vjsEvent);
         }, false);
       });
     }
@@ -445,9 +464,9 @@ class Scene7 extends Tech {
   /**
    * Resize the video when the container resizes
    *
-   * @param {number}
+   * @param {number} width
    *    - Width of the video in pixels
-   * @param {number}
+   * @param {number} height
    *    - Height of the video in pixels
    **/
   resizeVideo(width, height) {
