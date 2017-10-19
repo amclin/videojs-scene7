@@ -96,7 +96,7 @@ class Scene7 extends Tech {
    */
   _setupS7Params() {
     const sdk = this.s7.sdk;
-    const self = this;
+    const that = this;
     /* Create an instance of the ParameterManager component to collect
     components' configuration that can come from a viewer preset, URL,
     or the HTML page itself. The ParameterManager component also sends
@@ -111,8 +111,8 @@ class Scene7 extends Tech {
     /* Setup event to call next steps when PackageManager dispatches
     s7sdk.Event.SDK_READY event when all modifiers are processed and
     it is safe to initialize the viewer. */
-    params.addEventListener(self.s7.sdk.Event.SDK_READY, function(event) {
-      self._initViewer();
+    params.addEventListener(that.s7.sdk.Event.SDK_READY, function(event) {
+      that._initViewer();
     }, false);
 
     // Initialize ParameterManager
@@ -142,14 +142,14 @@ class Scene7 extends Tech {
    * Create the Scene7 Adaptive Video media set
    */
   _setupS7MediaSet() {
-    const self = this;
-    const sdk = self.s7.sdk;
-    const params = self.s7.params;
+    const that = this;
+    const sdk = that.s7.sdk;
+    const params = that.s7.params;
     const mediaSet = new sdk.set.MediaSet(null, params, 'mediaSet');
 
     // Add MediaSet event listeners
     mediaSet.addEventListener(sdk.event.AssetEvent.NOTF_SET_PARSED, function(event) {
-      self._setS7Source(event.s7event.asset);
+      that._setS7Source(event.s7event.asset);
     }, false);
 
     this.s7.mediaSet = mediaSet;
@@ -160,20 +160,20 @@ class Scene7 extends Tech {
    * other S7 UI components that are part of the application
    **/
   _setupS7Container() {
-    const self = this;
-    const sdk = self.s7.sdk;
-    const params = self.s7.params;
+    const that = this;
+    const sdk = that.s7.sdk;
+    const params = that.s7.params;
     const container = new sdk.common.Container(null, params, 'cont');
 
     // Setup events to resize the player when the container changes size/fullscreen
     container.addEventListener(sdk.event.ResizeEvent.COMPONENT_RESIZE, function(event) {
-      self.resizeEventHandler(event);
+      that.resizeEventHandler(event);
     }, false);
     container.addEventListener(sdk.event.ResizeEvent.FULLSCREEN_RESIZE, function(event) {
-      self.resizeEventHandler(event);
+      that.resizeEventHandler(event);
     }, false);
 
-    self.container = container;
+    that.container = container;
   }
 
   /**
@@ -194,13 +194,13 @@ class Scene7 extends Tech {
    * Creates the Scene7 Video Player component used inside the container
    */
   _setupS7Player() {
-    const self = this;
-    const sdk = self.s7.sdk;
-    const container = self.s7.container;
-    const params = self.s7.params;
+    const that = this;
+    const sdk = that.s7.sdk;
+    const container = that.s7.container;
+    const params = that.s7.params;
     const player = new sdk.video.VideoPlayer(container, params, 's7viewer');
 
-    self.player = player;
+    that.player = player;
   }
 
   /**
@@ -211,9 +211,9 @@ class Scene7 extends Tech {
    *
    **/
   _setS7Source(asset) {
-    const self = this;
-    const sdk = self.s7.sdk;
-    const player = self.s7.player;
+    const that = this;
+    const sdk = that.s7.sdk;
+    const player = that.s7.player;
     let src = {};
 
     // Ensure this is a media set asset
@@ -254,8 +254,8 @@ class Scene7 extends Tech {
    * @return {undefined}
    **/
   play() {
-    const self = this;
-    const player = self.s7.player;
+    const that = this;
+    const player = that.s7.player;
     const remainingTime = player.getDuration() - player.getCurrentTime();
 
     // IF the video is over, restart from the beginning
@@ -322,8 +322,8 @@ class Scene7 extends Tech {
    * @see [Spec]{@link https://www.w3.org/TR/html5/embedded-content-0.html#dom-media-buffered}
    */
   buffered() {
-    const self = this;
-    const player = self.player;
+    const that = this;
+    const player = that.player;
     let timeRange = {
       length: 0,
       start() {
@@ -345,7 +345,7 @@ class Scene7 extends Tech {
         }
       };
     } else {
-      self.trigger('error');
+      that.trigger('error');
     }
 
     return timeRange;
@@ -386,9 +386,9 @@ class Scene7 extends Tech {
    * Map required Video JS events to their Scene7 equivalents
    **/
   _mapEvents() {
-    const self = this;
-    const sdk = self.s7.sdk;
-    const player = self.s7.player;
+    const that = this;
+    const sdk = that.s7.sdk;
+    const player = that.s7.player;
     const events = {
       player: [
         {
@@ -426,19 +426,19 @@ class Scene7 extends Tech {
     for (const component in events) {
       events[component].forEach(function(event) {
         const splitName = event.internal.split('.');
-        const target = self.s7[component];
+        const target = that.s7[component];
         const s7Event = sdk.event[splitName[0]][splitName[1]];
         const vjsEvent = event.external;
 
         target.addEventListener(s7Event, function(ev) {
-          self.trigger(vjsEvent);
+          that.trigger(vjsEvent);
         }, false);
       });
     }
 
     // Events that require some logic when mapping
     player.addEventListener(sdk.event.VideoEvent.NOTF_LOAD_PROGRESS, function(event) {
-      self._handleLoadProgress();
+      that._handleLoadProgress();
     }, false);
   }
 
@@ -448,17 +448,17 @@ class Scene7 extends Tech {
    * get updated multiple times
    **/
   _handleLoadProgress() {
-    const self = this;
+    const that = this;
 
     // Only trigger loadstart once
-    if (self.loadstartFired) {
-      self.trigger('loadedmetadata');
-      self.trigger('loadstart');
-      self.loadstartFired = true;
+    if (that.loadstartFired) {
+      that.trigger('loadedmetadata');
+      that.trigger('loadstart');
+      that.loadstartFired = true;
     }
 
-    self.trigger('progress');
-    self.trigger('durationchange');
+    that.trigger('progress');
+    that.trigger('durationchange');
   }
 
   /**
