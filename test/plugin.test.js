@@ -8,6 +8,11 @@ import plugin from '../src/plugin';
 
 const Tech = videojs.getComponent('Tech');
 
+// Create some shorthand for test methods
+const module = QUnit.module;
+const test = QUnit.test;
+const skip = QUnit.skip;
+
 /**
  * Returns a random integer between min (inclusive) and max (inclusive)
  * Using Math.round() will give you a non-uniform distribution!
@@ -138,3 +143,48 @@ QUnit.test('canPlaySource()', function(assert) {
   //   'returns \'maybe\' when the mime type is video/mp4.'
   // );
 });
+
+module('Sets up Scene7 APIs',function() {
+  skip('Loads Scene7 SDK.',(assert) => {
+    assert.expect(4);
+    // Main SDK
+    // Container SDK
+    // MediaSet SDK
+    // VideoPlayer SDK
+  });
+  skip('Creates a Scene7 Container.',(assert) => {  });
+  skip('Creates a Scene7 MediaSet.',(assert) => {  });
+  skip('Creates a Scene7 ParametersManager.',(assert) => {  });
+  skip('Creates a Scene7 VideoPlayer.',(assert) => {  });
+});
+
+module('Binds VideoJS events to Scene7 events.', () => {
+  skip('Sets up fullscreen events.',(assert) => {  });
+  skip('Sets up playback events.',(assert) => {  });
+  skip('Sets up volume events.',(assert) => {  });
+  skip('Sets up loading events.',(assert) => {  });
+});
+
+module('manages the source of the Scene7 video.', () => {
+  skip('src()',(assert) => {  });
+  skip('srcSet()',(assert) => {  });
+  skip('currentSrc()',(assert) => {  });
+});
+
+module('binds VideoJS playback controls to the Scene7 video.', () => {
+  skip('play()',(assert) => {  });
+  skip('pause()',(assert) => {  });
+  skip('paused()',(assert) => {  });
+  skip('ended()',(assert) => {  });
+  skip('setCurrentTime()',(assert) => {  });
+  skip('currentTime()',(assert) => {  });
+  skip('duration()',(assert) => {  });
+});
+
+module('manages full screen mode.', () => {
+  skip('supportsFullScreen()',(assert) => {  });
+  skip('enterFullScreen()',(assert) => {  });
+  skip('exitFullScreen()',(assert) => {  });
+  skip('resizeVideo()',(assert) => {  });
+});
+
