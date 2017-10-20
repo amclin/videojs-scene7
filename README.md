@@ -80,3 +80,11 @@ MIT. Copyright (c) Anthony McLin &lt;npm@anthonymclin.com&gt;
 
 
 [videojs]: http://videojs.com/
+
+[coveralls-icon]: https://coveralls.io/repos/github/amclin/videojs-scene7/badge.svg?branch=master
+
+[coveralls-link]: https://coveralls.io/github/amclin/videojs-scene7?branch=master
+
+[travis-icon]: https://travis-ci.org/amclin/videojs-scene7.svg?branch=master
+
+[travis-link]: https://travis-ci.org/amclin/videojs-scene7
