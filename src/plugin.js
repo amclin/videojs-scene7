@@ -25,7 +25,7 @@ const defaults = {
 };
 
 // Cross-compatibility for Video.js 5 and 6.
-const registerTech = videojs.registerTech || videojs.plugin;
+// const registerTech = videojs.registerTech || videojs.plugin;
 // const dom = videojs.dom || videojs;
 
 /**
@@ -47,8 +47,10 @@ class Scene7 extends Tech {
   constructor(options, ready) {
     super(options, ready);
 
+    this.s7 = {};
+
     this._loadS7SDK();
-    this._setupParams();
+    this._setupS7Params();
   }
 
   /**
@@ -154,7 +156,7 @@ class Scene7 extends Tech {
       that.resizeEventHandler(event);
     }, false);
 
-    that.container = container;
+    that.s7.container = container;
   }
 
   /**
@@ -181,7 +183,7 @@ class Scene7 extends Tech {
     const params = that.s7.params;
     const player = new sdk.video.VideoPlayer(container, params, 's7viewer');
 
-    that.player = player;
+    that.s7.player = player;
   }
 
   /**
@@ -214,22 +216,6 @@ class Scene7 extends Tech {
   }
 
   /**
-   * Tells VideoJS whether the Scene7 Tech can play the proposed video
-   * based on the specified mime/type
-   *
-   * @param {string} mimetype
-   *        mime/type of the video
-   *
-   * @return {string}
-   *    - 'probably' if S7 can play the video
-   *    - 'maybe'
-   *    - '' empty string if S7 cannot play the video
-   **/
-  canPlay(mimetype) {
-    return mimetype === 'video/scene7' ? 'probably' : '';
-  }
-
-  /**
    * Starts video playback. Restarts the video if we're already at the end
    *
    * @return {undefined}
@@ -237,14 +223,37 @@ class Scene7 extends Tech {
   play() {
     const that = this;
     const player = that.s7.player;
-    const remainingTime = player.getDuration() - player.getCurrentTime();
 
     // IF the video is over, restart from the beginning
-    if (remainingTime <= 1) {
-      player.seek(0);
+    if (that.ended()) {
+      that.setCurrentTime(0);
     }
 
     return player.play();
+  }
+
+  /**
+   * Checks if the video has reached the end or not
+   *
+   * @return {boolean}
+   *    - True if ended
+   *    - False if not ended
+   **/
+  ended() {
+    const player = this.s7.player;
+
+    return (player.getDuration() - player.getCurrentTime() <= 1);
+  }
+
+  /**
+   * Sets the current playback point
+   *
+   * @param {number} time
+   *    - Time in seconds since the beginning
+   */
+  setCurrentTime(time) {
+    this.s7.player.seek(time);
+    super.setCurrentTime();
   }
 
   /**
@@ -455,8 +464,49 @@ class Scene7 extends Tech {
   }
 }
 
+// ****** These methods fail to exist if defined in the class ****** //
+
+/**
+ * Check if Scene7 video is supported by this browser/device
+ * (this doesn't work as a native function)
+ *
+ * @return {boolean} Always true when S7 is enabled
+ */
+Scene7.isSupported = function() {
+  return true;
+};
+
+/**
+ * Check if the tech can support the given mime/type
+ *
+ * @param {string} mimetype
+ *        mime/type of the video
+ *
+ * @return {string}
+ *    - 'probably' if S7 can play the video
+ *    - 'maybe'
+ *    - '' empty string if S7 cannot play the video
+ **/
+Scene7.canPlayType = function(mimetype) {
+  return mimetype === 'videojs/scene7' ? 'probably' : '';
+};
+
+/**
+ * Check if the tech can support the given source
+ *
+ * @param  {Object} srcObj  The source object
+ *
+ * @return {string}
+ *    - 'probably' if S7 can play the video
+ *    - 'maybe'
+ *    - '' empty string if S7 cannot play the video
+ */
+Scene7.canPlaySource = function(srcObj) {
+  return this.canPlayType(srcObj.type);
+};
+
 // Register the plugin with video.js.
-registerTech('Scene7', Scene7);
+videojs.registerTech('Scene7', Scene7);
 
 // Include the version number.
 Scene7.VERSION = VERSION;
