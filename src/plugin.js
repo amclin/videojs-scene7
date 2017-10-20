@@ -626,6 +626,13 @@ Scene7.canPlaySource = function(srcObj) {
   return this.canPlayType(srcObj.type);
 };
 
+/**
+ * Set the tech's volume control support status
+ *
+ * @type {Boolean}
+ */
+Scene7.featuresVolumeControl = true;
+
 // Register the plugin with video.js.
 videojs.registerTech('Scene7', Scene7);
 
