@@ -220,30 +220,53 @@ class Scene7 extends Tech {
   }
 
   /**
-   * Get/set video
+   * A getter/setter for the `Html5` Tech's source object.
+   * > Note: Please use {@link Html5#setSource}
    *
-   * @param {Object=} src Source object
-   * @return {Object}
-   * @method src
+   * @param {Tech~SourceObject} [src]
+   *        The source object you want to set on the `HTML5` techs element.
+   *
+   * @return {Tech~SourceObject|undefined}
+   *         - The current source object when a source is not passed in.
+   *         - undefined when setting
+   *
+   * @deprecated Since version 5.
    */
   src(src) {
-
     if (typeof src === 'undefined') {
       return this.source;
     }
 
+    // Setting src through `src` instead of `setSrc` will be deprecated
+    this.setSrc(src);
+  }
+
+  /**
+   * Set the video source for Scene7
+   * {@link Tech~SourceObject} for the media.
+   *
+   * @method Html5#setSrc
+   * @param {Tech~SourceObject} src
+   *        The source object to set as the current source.
+   *
+   * @see [Spec]{@link https://www.w3.org/TR/html5/embedded-content-0.html#dom-media-src}
+   */
+  setSrc(src) {
     // TODO map in the S7 source setup instead of demo file
     // const s7source = transform src
     // this._setS7Source(s7source);
   }
 
   /**
-   * Get current source
+   * Get the current source on the Scene7 Tech. Falls back to returning the source provided
+   * from the options
    *
-   * @return {Object}
-   * @method currentSrc
+   * @return {Tech~SourceObject}
+   *         The current source object from the HTML5 tech. With a fallback to the
+   *         elements source.
    */
   currentSrc() {
+    // TODO get the source from Scene7 keeping fallback from options
     return this.source.src;
   }
 
@@ -294,7 +317,26 @@ class Scene7 extends Tech {
    * @return {undefined}
    **/
   pause() {
-    return this.s7.player.pause();
+
+
+    this.s7.player.pause();
+  }
+
+  /**
+   * Get the value of `paused` from the Scene7. `paused` indicates whether the media element
+   * is currently paused or not.
+   *
+   * @method Scene7#paused
+   * @return {boolean}
+   *         Whether or not Scene7 is paused
+   *
+   * @see [Spec]{@link https://www.w3.org/TR/html5/embedded-content-0.html#dom-media-paused}
+   */
+  paused() {
+    // We track a state managed by events since Scene7 internal
+    // player.resolveVideoProxy().paused() is unreliable and always
+    // returns true
+    return self.state === 'paused';
   }
 
   /**
@@ -462,6 +504,11 @@ class Scene7 extends Tech {
     player.addEventListener(sdk.event.VideoEvent.NOTF_LOAD_PROGRESS, function(event) {
       that._handleLoadProgress();
     }, false);
+
+    // Video is switched into playable/pausable/replayable state
+    player.addEventListener(sdk.event.CapabilityStateEvent.NOTF_VIDEO_CAPABILITY_STATE, function(event) {
+      that._handleStateChange(event);
+    }, false);
   }
 
   /**
@@ -481,6 +528,48 @@ class Scene7 extends Tech {
 
     that.trigger('progress');
     that.trigger('durationchange');
+  }
+
+  /**
+   * Tracks the Scene7 player state since some methods are not exposed
+   *
+   * @param {object} event
+   *      Scene7 event
+   */
+  _handleStateChange(event) {
+    const sdk = this.s7.sdk;
+    const cap = event.s7event.state;
+
+    // Scene7 is pausable means the video is playing
+    if(cap.hasCapability(sdk.VideoCapabilityState.PAUSE)) {
+      // this.trigger('timeupdate');
+      // this.trigger('durationchange');
+      this.trigger('playing');
+      this.trigger('play');
+      self.state = 'playing';
+      return;
+    }
+
+    // Scene7 is playable means the video is paused
+    if(cap.hasCapability(sdk.VideoCapabilityState.PLAY)) {
+      this.trigger('canplay');
+      this.trigger('pause');
+      self.state = 'paused';
+      return;
+    }
+
+    // if(cap.hasCapability(sdk.VideoCapabilityState.STOP)) {
+    //   self.state = 'playing';
+    //   return;
+    // }
+
+    // Scene7 is replayable means the video is ended
+    if(cap.hasCapability(sdk.VideoCapabilityState.REPLAY)) {
+      this.trigger('canplay');
+      this.trigger('ended');
+      self.state = 'ended';
+      return;
+    }
   }
 
   /**
