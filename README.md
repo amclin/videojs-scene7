@@ -1,5 +1,10 @@
 # videojs-scene7
 
+[![Build Status][travis-icon]][travis-link]
+[![Coverage Status][coveralls-icon]][coveralls-link]
+
+[![NPM][npm-icon]][npm-link]
+
 Tech plugin for VideoJS to support Scene7 players
 
 ## Table of Contents
