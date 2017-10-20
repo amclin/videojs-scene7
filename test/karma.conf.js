@@ -33,7 +33,7 @@ module.exports = function(config) {
       }
     },
     detectBrowsers: detectBrowsers,
-    reporters: ['coverage','coveralls','dots'],
+    reporters: ['coverage','dots'],
     // Coverage reporter outputs a nicely formated HTML coverage
     // report, as well as an XML report in Clover format for
     // Bamboo to consume

@@ -20,6 +20,8 @@ before_script:
   - export CHROME_BIN=/usr/bin/google-chrome
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
+after_success:
+  - cat ./test/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 env:
   - VJS=5
   - VJS=6
