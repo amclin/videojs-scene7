@@ -20,8 +20,8 @@ module.exports = function(config) {
     frameworks: ['qunit', 'detectBrowsers'],
     files: [
       'node_modules/video.js/dist/video-js.css',
-      
-      
+
+
       'node_modules/sinon/pkg/sinon.js',
       'node_modules/video.js/dist/video.js',
       'test/dist/bundle.js'
@@ -33,7 +33,19 @@ module.exports = function(config) {
       }
     },
     detectBrowsers: detectBrowsers,
-    reporters: ['dots'],
+    reporters: ['coverage','coveralls','dots'],
+    // Coverage reporter outputs a nicely formated HTML coverage
+    // report, as well as an XML report in Clover format for
+    // Bamboo to consume
+    coverageReporter: {
+      dir : 'test/coverage/',
+      includeAllSources: true,
+      reporters: [
+        {type: 'html', subdir: 'report'},
+        {type: 'clover', subdir: '.', file: 'report-clover.xml'},
+        {type: 'lcov', subdir: '.'}
+      ]
+    },
     port: 9876,
     colors: true,
     autoWatch: false,
