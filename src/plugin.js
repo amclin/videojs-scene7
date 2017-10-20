@@ -49,6 +49,8 @@ class Scene7 extends Tech {
 
     this.s7 = {};
 
+    this.source = options.source;
+
     this._loadS7SDK();
     this._setupS7Params();
   }
@@ -119,6 +121,8 @@ class Scene7 extends Tech {
     this._setupS7Container();
     this._setupS7Player();
     this._mapEvents();
+
+    this.triggerReady();
   }
 
   /**
@@ -213,6 +217,34 @@ class Scene7 extends Tech {
     }
 
     player.setItem(src);
+  }
+
+  /**
+   * Get/set video
+   *
+   * @param {Object=} src Source object
+   * @return {Object}
+   * @method src
+   */
+  src(src) {
+
+    if (typeof src === 'undefined') {
+      return this.source;
+    }
+
+    // TODO map in the S7 source setup instead of demo file
+    // const s7source = transform src
+    // this._setS7Source(s7source);
+  }
+
+  /**
+   * Get current source
+   *
+   * @return {Object}
+   * @method currentSrc
+   */
+  currentSrc() {
+    return this.source.src;
   }
 
   /**
