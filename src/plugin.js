@@ -317,14 +317,12 @@ class Scene7 extends Tech {
    * @return {undefined}
    **/
   pause() {
-
-
     this.s7.player.pause();
   }
 
   /**
-   * Get the value of `paused` from the Scene7. `paused` indicates whether the media element
-   * is currently paused or not.
+   * Get the value of `paused` from the Scene7. `paused` indicates whether the
+   * media element is currently paused or not.
    *
    * @method Scene7#paused
    * @return {boolean}
@@ -336,7 +334,7 @@ class Scene7 extends Tech {
     // We track a state managed by events since Scene7 internal
     // player.resolveVideoProxy().paused() is unreliable and always
     // returns true
-    return self.state === 'paused';
+    return this.state === 'paused';
   }
 
   /**
@@ -533,7 +531,7 @@ class Scene7 extends Tech {
   /**
    * Tracks the Scene7 player state since some methods are not exposed
    *
-   * @param {object} event
+   * @param {Object} event
    *      Scene7 event
    */
   _handleStateChange(event) {
@@ -541,33 +539,33 @@ class Scene7 extends Tech {
     const cap = event.s7event.state;
 
     // Scene7 is pausable means the video is playing
-    if(cap.hasCapability(sdk.VideoCapabilityState.PAUSE)) {
+    if (cap.hasCapability(sdk.VideoCapabilityState.PAUSE)) {
       // this.trigger('timeupdate');
       // this.trigger('durationchange');
       this.trigger('playing');
       this.trigger('play');
-      self.state = 'playing';
+      this.state = 'playing';
       return;
     }
 
     // Scene7 is playable means the video is paused
-    if(cap.hasCapability(sdk.VideoCapabilityState.PLAY)) {
+    if (cap.hasCapability(sdk.VideoCapabilityState.PLAY)) {
       this.trigger('canplay');
       this.trigger('pause');
-      self.state = 'paused';
+      this.state = 'paused';
       return;
     }
 
-    // if(cap.hasCapability(sdk.VideoCapabilityState.STOP)) {
+    // if (cap.hasCapability(sdk.VideoCapabilityState.STOP)) {
     //   self.state = 'playing';
     //   return;
     // }
 
     // Scene7 is replayable means the video is ended
-    if(cap.hasCapability(sdk.VideoCapabilityState.REPLAY)) {
+    if (cap.hasCapability(sdk.VideoCapabilityState.REPLAY)) {
       this.trigger('canplay');
       this.trigger('ended');
-      self.state = 'ended';
+      this.state = 'ended';
       return;
     }
   }
