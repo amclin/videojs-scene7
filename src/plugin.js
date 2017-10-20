@@ -24,6 +24,9 @@ const defaults = {
   'iconeffect': '1,-1,0.3,0'
 };
 
+// Scene7 tracks at a different timescale than VideoJS
+const timeRatio = 1000;
+
 // Cross-compatibility for Video.js 5 and 6.
 // const registerTech = videojs.registerTech || videojs.plugin;
 // const dom = videojs.dom || videojs;
@@ -297,6 +300,10 @@ class Scene7 extends Tech {
   ended() {
     const player = this.s7.player;
 
+    if (this.state === 'ended') {
+      return true;
+    }
+
     return (player.getDuration() - player.getCurrentTime() <= 1);
   }
 
@@ -307,7 +314,7 @@ class Scene7 extends Tech {
    *    - Time in seconds since the beginning
    */
   setCurrentTime(time) {
-    this.s7.player.seek(time);
+    this.s7.player.seek(time * timeRatio);
     super.setCurrentTime();
   }
 
@@ -344,7 +351,7 @@ class Scene7 extends Tech {
    *    - seconds since beginning
    **/
   currentTime() {
-    return this.s7.player.getCurrentTime();
+    return this.s7.player.getCurrentTime() / timeRatio;
   }
 
   /**
@@ -366,7 +373,7 @@ class Scene7 extends Tech {
    *         The duration of the media in seconds or NaN if there is no duration.
    */
   duration() {
-    return this.s7.player.getDuration();
+    return this.s7.player.getDuration() / timeRatio;
     // TODO Duration may not be available until playback has started
     // If that's the case, then use a this.on('timeupdate',checkProgress)
     // listener to poll for a duration update.
@@ -403,7 +410,7 @@ class Scene7 extends Tech {
           return 0;
         },
         end() {
-          return player.getLoadedPosition() * player.getDuration();
+          return (player.getLoadedPosition() * player.getDuration()) / timeRatio;
         }
       };
     } else {
