@@ -6,6 +6,7 @@ import sinon from 'sinon';
 import videojs from 'video.js';
 
 import plugin from '../src/plugin';
+import s7faker from './s7faker';
 
 const Tech = videojs.getComponent('Tech');
 
@@ -25,10 +26,12 @@ const testOptions = {
  * Adds the Scene7 script tag to the page
  */
 function _addS7Script() {
-  const sdktag = document.createElement('script');
+  // const sdktag = document.createElement('script');
 
-  sdktag.src = 'http://s7d1.scene7.com/s7sdk/3.0/js/s7sdk/utils/Utils.js';
-  document.head.appendChild(sdktag);
+  // sdktag.src = 'http://s7d1.scene7.com/s7sdk/3.0/js/s7sdk/utils/Utils.js';
+  // document.head.appendChild(sdktag);
+
+  window.s7sdk = s7faker;
 }
 
 /**
@@ -98,7 +101,7 @@ QUnit.module('videojs-scene7', {
 }, () => {
 
   module('Sets up Scene7 APIs', function() {
-    skip('Loads Scene7 SDK.', function(assert) {
+    test('Loads Scene7 SDK.', function(assert) {
       const sdk = window.s7sdk;
       const Scene7 = this.player.tech_;
       const done = assert.async();
