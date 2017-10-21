@@ -6,6 +6,26 @@
  * from Scene7
  */
 
+const fakeEventListener = {
+  events: {},
+
+  addEventListener(name, callback) {
+    if (typeof fakeEventListener.events[name] === 'undefined') {
+      fakeEventListener.events[name] = [];
+    }
+
+    if (typeof callback === 'function') {
+      fakeEventListener.events[name].push(callback);
+    }
+  },
+
+  dispatchEvent(name) {
+    fakeEventListener.events[name].forEach((callback) => {
+      callback();
+    });
+  }
+};
+
 const player = {
   defaults: {
     volume: 0.5,
@@ -39,13 +59,18 @@ const container = {
 };
 
 const params = {
-  addEventListener() {
-    return;
-  },
+  opts: {},
 
   init() {
     return;
-  }
+  },
+
+  push(arg1, arg2) {
+    params.opts[arg1] = arg2;
+  },
+
+  addEventListener: fakeEventListener.addEventListener,
+  dispatchEvent: fakeEventListener.dispatchEvent
 };
 
 const mediaset = {
