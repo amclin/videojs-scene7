@@ -161,6 +161,30 @@ QUnit.module('videojs-scene7', {
     skip('Creates a Scene7 VideoPlayer.', (assert) => { });
   });
 
+  module('Sets up display', function() {
+    test('injectS7Player()', function(assert) {
+      let s7El = {};
+      const vjsEl = this.player.el_;
+
+      assert.expect(1);
+
+      this.Scene7.s7.container = this.sdk.common.Container(
+        null,
+        null,
+        _getRandomAlphaString()
+      );
+      this.Scene7.s7.player = this.sdk.video.VideoPlayer();
+      s7El = this.Scene7.s7.container.component.obj;
+      this.Scene7.injectS7Player();
+
+      assert.strictEqual(
+        s7El.parentNode.parentNode,
+        vjsEl,
+        'moves the Scene7 video into the VideoJS container.'
+      );
+    });
+  });
+
   module('Binds VideoJS events to Scene7 events.', () => {
     skip('Sets up fullscreen events.', (assert) => { });
     skip('Sets up playback events.', (assert) => { });
@@ -230,11 +254,15 @@ QUnit.module('videojs-scene7', {
     test('enterFullScreen()', function(assert) {
       const done = assert.async();
 
-      this.Scene7.s7.container = this.sdk.common.Container();
+      this.Scene7.s7.container = this.sdk.common.Container(
+        null,
+        null,
+        _getRandomAlphaString()
+      );
       this.Scene7.s7.container.addEventListener(
         this.sdk.event.ResizeEvent.FULLSCREEN_RESIZE,
         function(ev) {
-          assert.ok(true,'triggers Scene7 fullscreen mode.');
+          assert.ok(true, 'triggers Scene7 fullscreen mode.');
           done();
         }
       );
@@ -247,12 +275,16 @@ QUnit.module('videojs-scene7', {
 
       assert.expect(1);
 
-      this.Scene7.s7.container = this.sdk.common.Container();
+      this.Scene7.s7.container = this.sdk.common.Container(
+        null,
+        null,
+        _getRandomAlphaString()
+      );
       this.Scene7.s7.player = this.sdk.video.VideoPlayer();
       this.Scene7.s7.container.addEventListener(
         this.sdk.event.ResizeEvent.COMPONENT_RESIZE,
         function(ev) {
-          assert.ok(true,'exits Scene7 fullscreen mode.');
+          assert.ok(true, 'exits Scene7 fullscreen mode.');
           // assert.strictEqual(
           //   this.Scene7.s7.player.getWidth(),
           //   this.Scene7.s7.container.getWidth(),
@@ -271,13 +303,13 @@ QUnit.module('videojs-scene7', {
     });
 
     test('resizeVideo()', function(assert) {
-      const width = _getRandomAlphaString(200,500);
-      const height = _getRandomAlphaString(200,500);
+      const width = _getRandomInt(200, 500);
+      const height = _getRandomInt(200, 500);
 
       assert.expect(2);
 
       this.Scene7.s7.player = this.sdk.video.VideoPlayer();
-      this.Scene7.resizeVideo(width,height);
+      this.Scene7.resizeVideo(width, height);
 
       assert.strictEqual(
         this.Scene7.s7.player.getWidth(),

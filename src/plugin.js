@@ -125,6 +125,8 @@ class Scene7 extends Tech {
     this._setupS7Player();
     this._mapEvents();
 
+    this.injectS7Player();
+
     this.triggerReady();
   }
 
@@ -587,6 +589,32 @@ class Scene7 extends Tech {
    **/
   resizeVideo(width, height) {
     this.s7.player.resize(width, height);
+  }
+
+  /**
+   * Resize the container
+   *
+   * @param {number} width
+   *    - Width of the container in pixels
+   * @param {number} height
+   *    - Height of the container in pixels
+   **/
+  resizeContainer(width, height) {
+    this.s7.container.resize(width, height);
+  }
+
+  /**
+   * Move the Scene7 container inside the VideoJS container
+   */
+  injectS7Player() {
+    const that = this;
+    const s7El = that.s7.container.component.obj;
+    const vjsEl = that.el_.parentElement;
+
+    that.el_.appendChild(s7El);
+
+    that.resizeContainer(vjsEl.offsetWidth, vjsEl.offsetHeight);
+    that.resizeVideo(vjsEl.offsetWidth, vjsEl.offsetHeight);
   }
 }
 

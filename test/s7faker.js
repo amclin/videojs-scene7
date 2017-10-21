@@ -6,26 +6,22 @@
  * from Scene7
  */
 
-const fakeEventListener = {
-  events: {},
+import document from 'global/document';
 
-  addEventListener(name, callback) {
-    if (typeof fakeEventListener.events[name] === 'undefined') {
-      fakeEventListener.events[name] = [];
-    }
+const events = {};
+const params = {
+  opts: {},
 
-    if (typeof callback === 'function') {
-      fakeEventListener.events[name].push(callback);
-    }
+  init() {
+    return;
   },
 
-  dispatchEvent(name) {
-    fakeEventListener.events[name].forEach((callback) => {
-      callback();
-    });
+  push(arg1, arg2) {
+    params.opts[arg1] = arg2;
   }
 };
-
+const mediaset = {
+};
 const player = {
   defaults: {
     volume: 0.5,
@@ -77,27 +73,15 @@ const player = {
     return player.defaults.width;
   }
 };
-
 const container = {
   defaults: {
     width: 400,
     height: 200
   },
-  addEventListener: fakeEventListener.addEventListener,
-  dispatchEvent: fakeEventListener.dispatchEvent,
+  component: { },
   resize(width, height) {
     container.defaults.width = width;
     container.defaults.height = height;
-  },
-  requestFullScreen() {
-    container.dispatchEvent(
-      s7faker.event.ResizeEvent.FULLSCREEN_RESIZE
-    );
-  },
-  cancelFullScreen() {
-    container.dispatchEvent(
-      s7faker.event.ResizeEvent.COMPONENT_RESIZE
-    );
   },
   getHeight() {
     return player.defaults.height;
@@ -106,26 +90,6 @@ const container = {
     return player.defaults.width;
   }
 };
-
-const params = {
-  opts: {},
-
-  init() {
-    return;
-  },
-
-  push(arg1, arg2) {
-    params.opts[arg1] = arg2;
-  },
-
-  addEventListener: fakeEventListener.addEventListener,
-  dispatchEvent: fakeEventListener.dispatchEvent
-};
-
-const mediaset = {
-
-};
-
 const s7faker = {
   // Fake the loader
   Util: {
@@ -155,11 +119,7 @@ const s7faker = {
     return params;
   },
 
-  common: {
-    Container() {
-      return container;
-    }
-  },
+  common: { },
 
   set: {
     MediaSet() {
@@ -172,6 +132,53 @@ const s7faker = {
       return player;
     }
   }
+};
+
+function addEventListener(name, callback) {
+  if (typeof events[name] === 'undefined') {
+    events[name] = [];
+  }
+
+  if (typeof callback === 'function') {
+    events[name].push(callback);
+  }
+}
+
+function dispatchEvent(name) {
+  events[name].forEach((callback) => {
+    callback();
+  });
+}
+
+function initContainer(arg, opts, id) {
+  let node;
+
+  if (typeof container.component.obj === 'undefined') {
+    node = document.createElement('div');
+    node.id = id;
+    container.component.obj = node;
+    document.body.appendChild(node);
+  }
+
+  return container;
+}
+
+params.addEventListener = addEventListener;
+params.dispatchEvent = dispatchEvent;
+player.addEventListener = addEventListener;
+player.dispatchEvent = dispatchEvent;
+container.addEventListener = addEventListener;
+container.dispatchEvent = dispatchEvent;
+s7faker.common.Container = initContainer;
+container.requestFullScreen = function() {
+  container.dispatchEvent(
+    s7faker.event.ResizeEvent.FULLSCREEN_RESIZE
+  );
+};
+container.cancelFullScreen = function() {
+  container.dispatchEvent(
+    s7faker.event.ResizeEvent.COMPONENT_RESIZE
+  );
 };
 
 export default s7faker;
