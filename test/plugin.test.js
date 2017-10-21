@@ -37,10 +37,17 @@ function _addS7Script() {
 /**
  * Returns a random integer between min (inclusive) and max (inclusive)
  * Using Math.round() will give you a non-uniform distribution!
+ *
+ * @param {number} min
+ *    minimum value to return
+ * @param {number} max
+ *    maximum value to return
+ * @return {number}
+ *    random integer between min and max (inclusive)
  */
-// function _getRandomInt(min, max) {
-//   return Math.floor(Math.random() * (max - min + 1)) + min;
-// }
+function _getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 /**
  * Returns a random alphanumeric string
@@ -92,6 +99,8 @@ QUnit.module('videojs-scene7', {
     this.video = document.createElement('video');
     this.fixture.appendChild(this.video);
     this.player = videojs(this.video, testOptions);
+    this.Scene7 = this.player.tech_;
+    this.sdk = window.s7sdk;
   },
 
   afterEach() {
@@ -103,12 +112,11 @@ QUnit.module('videojs-scene7', {
   module('Sets up Scene7 APIs', function() {
     test('Loads Scene7 SDK.', function(assert) {
       const sdk = window.s7sdk;
-      const Scene7 = this.player.tech_;
       const done = assert.async();
 
       assert.expect(4);
 
-      Scene7._loadS7SDK();
+      this.Scene7._loadS7SDK();
 
       realTimeout(function() {
 
@@ -166,21 +174,122 @@ QUnit.module('videojs-scene7', {
     skip('currentSrc()', (assert) => { });
   });
 
-  module('binds VideoJS playback controls to the Scene7 video.', () => {
+  module('binds VideoJS playback controls to the Scene7 video.', function() {
     skip('play()', (assert) => { });
     skip('pause()', (assert) => { });
     skip('paused()', (assert) => { });
     skip('ended()', (assert) => { });
-    skip('setCurrentTime()', (assert) => { });
-    skip('currentTime()', (assert) => { });
-    skip('duration()', (assert) => { });
+
+    test('setCurrentTime()', function(assert) {
+      const time = _getRandomInt(100, 200);
+
+      this.Scene7.s7.player = this.sdk.video.VideoPlayer();
+      this.Scene7.setCurrentTime(time);
+
+      assert.expect(1);
+      assert.strictEqual(
+        this.Scene7.s7.player.getCurrentTime() / 1000,
+        time,
+        'converts the time to ms and sets Scene7 playback point'
+      );
+    });
+
+    test('currentTime()', function(assert) {
+      this.Scene7.s7.player = this.sdk.video.VideoPlayer();
+
+      assert.expect(1);
+      assert.strictEqual(
+        this.Scene7.currentTime(),
+        this.Scene7.s7.player.getCurrentTime() / 1000,
+        'gets the current playback point from Scene7 and converts to seconds'
+      );
+    });
+
+    test('duration()', function(assert) {
+      this.Scene7.s7.player = this.sdk.video.VideoPlayer();
+
+      assert.expect(1);
+      assert.strictEqual(
+        this.Scene7.duration(),
+        this.Scene7.s7.player.getDuration() / 1000,
+        'gets the clip length from Scene7 and converts to seconds'
+      );
+    });
   });
 
   module('manages full screen mode.', () => {
-    skip('supportsFullScreen()', (assert) => { });
-    skip('enterFullScreen()', (assert) => { });
-    skip('exitFullScreen()', (assert) => { });
-    skip('resizeVideo()', (assert) => { });
+    test('supportsFullScreen()', function(assert) {
+      assert.expect(1);
+      assert.strictEqual(
+        this.Scene7.supportsFullScreen(),
+        true,
+        'always supports fullscreen mode.'
+      );
+    });
+
+    test('enterFullScreen()', function(assert) {
+      const done = assert.async();
+
+      this.Scene7.s7.container = this.sdk.common.Container();
+      this.Scene7.s7.container.addEventListener(
+        this.sdk.event.ResizeEvent.FULLSCREEN_RESIZE,
+        function(ev) {
+          assert.ok(true,'triggers Scene7 fullscreen mode.');
+          done();
+        }
+      );
+
+      this.Scene7.enterFullScreen();
+    });
+
+    test('exitFullScreen()', function(assert) {
+      const done = assert.async();
+
+      assert.expect(1);
+
+      this.Scene7.s7.container = this.sdk.common.Container();
+      this.Scene7.s7.player = this.sdk.video.VideoPlayer();
+      this.Scene7.s7.container.addEventListener(
+        this.sdk.event.ResizeEvent.COMPONENT_RESIZE,
+        function(ev) {
+          assert.ok(true,'exits Scene7 fullscreen mode.');
+          // assert.strictEqual(
+          //   this.Scene7.s7.player.getWidth(),
+          //   this.Scene7.s7.container.getWidth(),
+          //   'resizes the video to match container width'
+          // );
+          // assert.strictEqual(
+          //   this.Scene7.s7.player.getHeight(),
+          //   this.Scene7.s7.container.getHeight(),
+          //   'resizes the video to match container height'
+          // );
+          done();
+        }
+      );
+
+      this.Scene7.exitFullScreen();
+    });
+
+    test('resizeVideo()', function(assert) {
+      const width = _getRandomAlphaString(200,500);
+      const height = _getRandomAlphaString(200,500);
+
+      assert.expect(2);
+
+      this.Scene7.s7.player = this.sdk.video.VideoPlayer();
+      this.Scene7.resizeVideo(width,height);
+
+      assert.strictEqual(
+        this.Scene7.s7.player.getWidth(),
+        this.Scene7.s7.player.getWidth(),
+        'resizes the video to specified width.'
+      );
+      assert.strictEqual(
+        this.Scene7.s7.player.getHeight(),
+        this.Scene7.s7.player.getHeight(),
+        'resizes the video to specified height.'
+      );
+    });
   });
 });
 

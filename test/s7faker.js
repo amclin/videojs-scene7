@@ -29,8 +29,11 @@ const fakeEventListener = {
 const player = {
   defaults: {
     volume: 0.5,
+    currentTime: 5000,
     duration: 100000,
-    loadedPosition: 75000
+    loadedPosition: 75000,
+    width: 200,
+    height: 100
   },
 
   play() {
@@ -41,21 +44,67 @@ const player = {
     return;
   },
 
-  getVolume() {
-    return this.defaults.vol;
+  resize(width, height) {
+    player.defaults.width = width;
+    player.defaults.height = height;
+  },
+
+  seek(param) {
+    player.defaults.currentTime = param;
+  },
+
+  getCurrentTime() {
+    return player.defaults.currentTime;
   },
 
   getDuration() {
-    return this.defaults.duration;
+    return player.defaults.duration;
+  },
+
+  getHeight() {
+    return player.defaults.height;
   },
 
   getLoadedPosition() {
-    return this.defaults.loadedPosition;
+    return player.defaults.loadedPosition;
+  },
+
+  getVolume() {
+    return player.defaults.vol;
+  },
+
+  getWidth() {
+    return player.defaults.width;
   }
 };
 
 const container = {
-
+  defaults: {
+    width: 400,
+    height: 200
+  },
+  addEventListener: fakeEventListener.addEventListener,
+  dispatchEvent: fakeEventListener.dispatchEvent,
+  resize(width, height) {
+    container.defaults.width = width;
+    container.defaults.height = height;
+  },
+  requestFullScreen() {
+    container.dispatchEvent(
+      s7faker.event.ResizeEvent.FULLSCREEN_RESIZE
+    );
+  },
+  cancelFullScreen() {
+    container.dispatchEvent(
+      s7faker.event.ResizeEvent.COMPONENT_RESIZE
+    );
+  },
+  getHeight() {
+    return player.defaults.height;
+  },
+  getWidth() {
+    return player.defaults.width;
+  }
 };
 
 const params = {
@@ -92,7 +141,14 @@ const s7faker = {
   },
 
   Event: {
-    SDK_READY: ''
+    SDK_READY: 'SDK_READY'
+  },
+
+  event: {
+    ResizeEvent: {
+      FULLSCREEN_RESIZE: 'FULLSCREEN_RESIZE',
+      COMPONENT_RESIZE: 'COMPONENT_RESIZE'
+    }
   },
 
   ParameterManager() {
