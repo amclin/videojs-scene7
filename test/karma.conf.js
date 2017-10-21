@@ -20,8 +20,6 @@ module.exports = function(config) {
     frameworks: ['qunit', 'detectBrowsers'],
     files: [
       'node_modules/video.js/dist/video-js.css',
-
-
       'node_modules/sinon/pkg/sinon.js',
       'node_modules/video.js/dist/video.js',
       'test/dist/bundle.js'
@@ -33,6 +31,9 @@ module.exports = function(config) {
       }
     },
     detectBrowsers: detectBrowsers,
+    preprocessors: {
+      'test/dist/**/*.js': ['coverage'],
+    },
     reporters: ['coverage','dots'],
     // Coverage reporter outputs a nicely formated HTML coverage
     // report, as well as an XML report in Clover format for
