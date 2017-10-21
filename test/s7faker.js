@@ -10,14 +10,14 @@ import document from 'global/document';
 
 const events = {};
 const params = {
-  opts: {},
+  params: {},
 
   init() {
     return;
   },
 
   push(arg1, arg2) {
-    params.opts[arg1] = arg2;
+    params.params[arg1] = arg2;
   }
 };
 const mediaset = {
@@ -109,9 +109,28 @@ const s7faker = {
   },
 
   event: {
+    AssetEvent: {
+      NOTF_SET_PARSED: 'NOTF_SET_PARSED'
+    },
+    CapabilityStateEvent: {
+      NOTF_VIDEO_CAPABILITY_STATE: 'NOTF_VIDEO_CAPABILITY_STATE'
+    },
     ResizeEvent: {
       FULLSCREEN_RESIZE: 'FULLSCREEN_RESIZE',
       COMPONENT_RESIZE: 'COMPONENT_RESIZE'
+    },
+    StatusEvent: {
+      NOTF_VIEW_READY: 'NOTF_VIEW_READY'
+    },
+    UserEvent: {
+      PAUSE: 'PAUSE',
+      PLAY: 'PLAY'
+    },
+    VideoEvent: {
+      NOTF_CURRENT_TIME: 'NOTF_CURRENT_TIME',
+      NOTF_DURATION: 'NOTF_DURATION',
+      NOTF_VIDEO_END: 'NOTF_VIDEO_END',
+      NOTF_VOLUME: 'NOTF_VOLUME'
     }
   },
 
@@ -163,6 +182,8 @@ function initContainer(arg, opts, id) {
   return container;
 }
 
+mediaset.addEventListener = addEventListener;
+mediaset.dispatchEvent = dispatchEvent;
 params.addEventListener = addEventListener;
 params.dispatchEvent = dispatchEvent;
 player.addEventListener = addEventListener;

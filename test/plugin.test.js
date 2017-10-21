@@ -161,6 +161,80 @@ QUnit.module('videojs-scene7', {
     skip('Creates a Scene7 VideoPlayer.', (assert) => { });
   });
 
+  module('Sets Scene7 options', function() {
+    skip('Sets Scene7 params', function(assert) {
+      assert.expect(3);
+
+      assert.strictEqual(
+        this.Scene7.s7.params.serverurl,
+        this.player.options.s7.serverurl,
+        'sets specified serverurl parameter from VideoJS options.'
+      );
+
+      assert.strictEqual(
+        this.Scene7.s7.params.videoserverurl,
+        this.player.options.s7.videoserverurl,
+        'sets specified videoserverurl parameter from VideoJS options.'
+      );
+
+      assert.strictEqual(
+        this.Scene7.s7.params.contenturl,
+        this.player.options.s7.contenturl,
+        'sets specified contenturl parameter from VideoJS options.'
+      );
+    });
+
+    skip('Sets default Scene7 params', function(assert) {
+      assert.expect(3);
+
+      assert.strictEqual(
+        this.Scene7.s7.params.serverurl,
+        'http://s7d1.scene7.com/is/image/',
+        'defaults serverurl to http://s7d1.scene7.com/is/image/'
+      );
+
+      assert.strictEqual(
+        this.Scene7.s7.params.videoserverurl,
+        'http://s7d1.scene7.com/is/content/',
+        'defaults videoserverurl to http://s7d1.scene7.com/is/content/'
+      );
+
+      assert.strictEqual(
+        this.Scene7.s7.params.contenturl,
+        'http://s7d1.scene7.com/is/content/',
+        'defaults contenturl to http://s7d1.scene7.com/is/content/'
+      );
+    });
+
+    test('sets autoplay', function(assert) {
+      assert.expect(2);
+
+      this.Scene7._setupS7Params();
+      this.Scene7._initViewer();
+
+      assert.strictEqual(
+        this.Scene7.s7.params.params.autoplay,
+        0,
+        'disables autoplay when set in VideoJS options.'
+      );
+
+      this.video = document.createElement('video');
+      this.video.setAttribute('autoplay', true);
+      this.fixture.appendChild(this.video);
+      this.player = videojs(this.video, testOptions);
+      this.Scene7 = this.player.tech_;
+
+      this.Scene7._setupS7Params();
+      this.Scene7._initViewer();
+
+      assert.strictEqual(
+        this.Scene7.s7.params.params.autoplay,
+        1,
+        'enables autoplay when set in VideoJS options.'
+      );
+    });
+  });
+
   module('Sets up display', function() {
     test('injectS7Player()', function(assert) {
       let s7El = {};

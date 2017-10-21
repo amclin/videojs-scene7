@@ -14,14 +14,14 @@ const defaults = {
   // specify closed caption file
   'caption': 'Scene7SharedAssets/adobe_qbc_final_cc,1',
   // specify chapter navigation file
-  'navigation': 'Scene7SharedAssets/adobe_qbc_final_nc',
+  'navigation': 'Scene7SharedAssets/adobe_qbc_final_nc'
   // disable video player to play video after load operation has completed
-  'autoplay': '0',
+  // 'autoplay': '0',
   // enable single click on video to toggle between play and pause
-  'singleclick': 'playPause',
+  // 'singleclick': 'playPause',
   // configures the icon effect when video is in paused state
   // as follows: enable,# times to appear, fade duration, auto-hide duration
-  'iconeffect': '1,-1,0.3,0'
+  // 'iconeffect': '1,-1,0.3,0'
 };
 
 // Scene7 tracks at a different timescale than VideoJS
@@ -49,6 +49,9 @@ class Scene7 extends Tech {
   */
   constructor(options, ready) {
     super(options, ready);
+
+    // Merge the Scene7
+    this.settings = Object.assign({}, defaults, options.s7);
 
     this.s7 = {};
 
@@ -114,11 +117,14 @@ class Scene7 extends Tech {
    */
   _initViewer() {
     const params = this.s7.params;
+    const autoplay = this.options_.autoplay ? 1 : 0;
 
     // Provide settings to Scene7 ParametersManager
-    for (const param in defaults) {
+    for (const param in this.settings) {
       params.push(param, defaults[param]);
     }
+
+    params.push('autoplay', autoplay);
 
     this._setupS7MediaSet();
     this._setupS7Container();
