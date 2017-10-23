@@ -181,10 +181,10 @@ class Scene7 extends Tech {
 
     // Setup events to resize the player when the container changes size/fullscreen
     container.addEventListener(sdk.event.ResizeEvent.COMPONENT_RESIZE, function(event) {
-      that.resizeEventHandler(event);
+      that._resizeEventHandler(event);
     }, false);
     container.addEventListener(sdk.event.ResizeEvent.FULLSCREEN_RESIZE, function(event) {
-      that.resizeEventHandler(event);
+      that._resizeEventHandler(event);
     }, false);
 
     that.s7.container = container;
@@ -201,7 +201,7 @@ class Scene7 extends Tech {
     const width = event.s7event.w;
     const height = event.s7event.h;
 
-    this.resizePlayer(width, height);
+    this.resizeVideo(width, height);
   }
 
   /**
@@ -286,7 +286,7 @@ class Scene7 extends Tech {
    * Get the current source on the Scene7 Tech.
    *
    * @return {Tech~SourceObject}
-   *         The current source object from the HTML5 tech.
+   *         The current source object from the Scene7 tech.
    */
   currentSrc() {
     return this.source;

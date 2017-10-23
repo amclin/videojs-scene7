@@ -422,11 +422,8 @@ QUnit.module('videojs-scene7', {
     test('enterFullScreen()', function(assert) {
       const done = assert.async();
 
-      this.Scene7.s7.container = this.sdk.common.Container(
-        null,
-        null,
-        _getRandomAlphaString()
-      );
+      this.Scene7._initViewer();
+      // this.Scene7._setupS7Container();
       this.Scene7.s7.container.addEventListener(
         this.sdk.event.ResizeEvent.FULLSCREEN_RESIZE,
         function(ev) {

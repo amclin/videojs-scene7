@@ -172,7 +172,13 @@ function addEventListener(name, callback) {
 
 function dispatchEvent(name) {
   events[name].forEach((callback) => {
-    callback();
+    const ev = {
+      s7event: {
+        w: 100,
+        h: 100
+      }
+    };
+    callback(ev);
   });
 }
 
