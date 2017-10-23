@@ -419,7 +419,7 @@ QUnit.module('videojs-scene7', {
       );
     });
 
-    test('enterFullScreen()', function(assert) {
+    skip('enterFullScreen()', function(assert) {
       const done = assert.async();
 
       this.Scene7._initViewer();

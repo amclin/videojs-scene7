@@ -160,6 +160,12 @@ const s7faker = {
   }
 };
 
+/**
+ * Simulates Scene7's addEventListener
+ *
+ * @param {string} name The event to listen to
+ * @param {function} callback A method to trigger when the event happens
+ */
 function addEventListener(name, callback) {
   if (typeof events[name] === 'undefined') {
     events[name] = [];
@@ -170,6 +176,11 @@ function addEventListener(name, callback) {
   }
 }
 
+/**
+ * Simulates Scene7's dispatchEvent method
+ *
+ * @param {string} name The event to trigger
+ */
 function dispatchEvent(name) {
   events[name].forEach((callback) => {
     const ev = {
@@ -178,10 +189,23 @@ function dispatchEvent(name) {
         h: 100
       }
     };
+
     callback(ev);
   });
 }
 
+/**
+ * Simulates Scene7's addEventListener
+ *
+ * @param {Object} arg Not implemented
+ *    - unclear what this does, in S7 examples it's generally null
+ * @param {Object} opts
+ *    - A Scene7 ParameterManager containing configuration
+ * @param {string} id
+ *    - Used to set the ID on the <div> created for the container
+ * @return {Object}
+ *    - Returns a Scene7 container element
+ */
 function initContainer(arg, opts, id) {
   let node;
 
