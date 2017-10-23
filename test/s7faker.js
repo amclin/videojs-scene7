@@ -21,6 +21,7 @@ const params = {
   }
 };
 const mediaset = {
+  component: { }
 };
 const player = {
   defaults: {
@@ -142,6 +143,12 @@ const s7faker = {
 
   set: {
     MediaSet() {
+      mediaset.component = {
+        mediaSet_: params.params['MediaSet.asset'], // eslint-disable-line camelcase
+        settings: {
+          params: params.params
+        }
+      };
       return mediaset;
     }
   },

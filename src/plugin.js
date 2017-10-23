@@ -14,14 +14,14 @@ const defaults = {
   // specify closed caption file
   'caption': 'Scene7SharedAssets/adobe_qbc_final_cc,1',
   // specify chapter navigation file
-  'navigation': 'Scene7SharedAssets/adobe_qbc_final_nc'
+  'navigation': 'Scene7SharedAssets/adobe_qbc_final_nc',
   // disable video player to play video after load operation has completed
   // 'autoplay': '0',
   // enable single click on video to toggle between play and pause
   // 'singleclick': 'playPause',
   // configures the icon effect when video is in paused state
   // as follows: enable,# times to appear, fade duration, auto-hide duration
-  // 'iconeffect': '1,-1,0.3,0'
+  'iconeffect': '0,-1,0.3,0'
 };
 
 // Scene7 tracks at a different timescale than VideoJS
@@ -117,14 +117,18 @@ class Scene7 extends Tech {
    */
   _initViewer() {
     const params = this.s7.params;
-    const autoplay = this.options_.autoplay ? 1 : 0;
+    const autoplay = (this.options_.autoplay) ? '1' : '0';
+
+    // Add source Media Set from <video> <source> tag
+    this.settings['MediaSet.asset'] = this.source.src;
+
+    // Add autoplay setting from VideoJS
+    this.settings.autoplay = autoplay;
 
     // Provide settings to Scene7 ParametersManager
     for (const param in this.settings) {
-      params.push(param, defaults[param]);
+      params.push(param, this.settings[param]);
     }
-
-    params.push('autoplay', autoplay);
 
     this._setupS7MediaSet();
     this._setupS7Container();
@@ -138,18 +142,30 @@ class Scene7 extends Tech {
 
   /**
    * Create the Scene7 Adaptive Video media set
+   *
+   * @param {string} src
+   *    - Optional media set path to use. Whatever is in params will be used when not provided.
    */
-  _setupS7MediaSet() {
+  _setupS7MediaSet(src) {
     const that = this;
     const sdk = that.s7.sdk;
     const params = that.s7.params;
-    const mediaSet = new sdk.set.MediaSet(null, params, 'mediaSet');
+    let mediaSet = {};
+
+    // Update parameters if specified
+    if (src) {
+      params['MediaSet.asset'] = src;
+    }
+
+    // Get new MediaSet object
+    mediaSet = new sdk.set.MediaSet(null, params, 'mediaSet');
 
     // Add MediaSet event listeners
     mediaSet.addEventListener(sdk.event.AssetEvent.NOTF_SET_PARSED, function(event) {
       that._setS7Source(event.s7event.asset);
     }, false);
 
+    // Store new MediaSet
     this.s7.mediaSet = mediaSet;
   }
 
@@ -245,7 +261,7 @@ class Scene7 extends Tech {
    */
   src(src) {
     if (typeof src === 'undefined') {
-      return this.source;
+      return this.currentSrc();
     }
 
     // Setting src through `src` instead of `setSrc` will be deprecated
@@ -256,29 +272,24 @@ class Scene7 extends Tech {
    * Set the video source for Scene7
    * {@link Tech~SourceObject} for the media.
    *
-   * @method Html5#setSrc
+   * @method Scene7#setSrc
    * @param {Tech~SourceObject} src
    *        The source object to set as the current source.
    *
    * @see [Spec]{@link https://www.w3.org/TR/html5/embedded-content-0.html#dom-media-src}
    */
   setSrc(src) {
-    // TODO map in the S7 source setup instead of demo file
-    // const s7source = transform src
-    // this._setS7Source(s7source);
+    this._setupS7MediaSet(src.src);
   }
 
   /**
-   * Get the current source on the Scene7 Tech. Falls back to returning the source provided
-   * from the options
+   * Get the current source on the Scene7 Tech.
    *
    * @return {Tech~SourceObject}
-   *         The current source object from the HTML5 tech. With a fallback to the
-   *         elements source.
+   *         The current source object from the HTML5 tech.
    */
   currentSrc() {
-    // TODO get the source from Scene7 keeping fallback from options
-    return this.source.src;
+    return this.source;
   }
 
   /**

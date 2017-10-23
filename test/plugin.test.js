@@ -97,6 +97,10 @@ QUnit.module('videojs-scene7', {
 
     this.fixture = document.getElementById('qunit-fixture');
     this.video = document.createElement('video');
+    this.source = document.createElement('source');
+    this.source.setAttribute('src', 'Scene7SharedAssets/Adobe_QBP-AVS');
+    this.source.setAttribute('type', 'videojs/scene7');
+    this.video.appendChild(this.source);
     this.fixture.appendChild(this.video);
     this.player = videojs(this.video, testOptions);
     this.Scene7 = this.player.tech_;
@@ -206,33 +210,34 @@ QUnit.module('videojs-scene7', {
       );
     });
 
-    test('sets autoplay', function(assert) {
-      assert.expect(2);
+    // test('sets autoplay when disabled', function(assert) {
+    //   assert.expect(1);
 
-      this.Scene7._setupS7Params();
-      this.Scene7._initViewer();
+    //   this.Scene7._setupS7Params();
+    //   this.Scene7._initViewer();
 
-      assert.strictEqual(
-        this.Scene7.s7.params.params.autoplay,
-        0,
-        'disables autoplay when set in VideoJS options.'
-      );
+    //   assert.strictEqual(
+    //     this.Scene7.s7.params.params.autoplay,
+    //     '0',
+    //     'disables autoplay when set in VideoJS options.'
+    //   );
+    // });
 
-      this.video = document.createElement('video');
-      this.video.setAttribute('autoplay', true);
-      this.fixture.appendChild(this.video);
-      this.player = videojs(this.video, testOptions);
-      this.Scene7 = this.player.tech_;
+    // test('sets autoplay when enabled', function(assert) {
+    //   assert.expect(1);
 
-      this.Scene7._setupS7Params();
-      this.Scene7._initViewer();
+    //   this.video.setAttribute('autoplay', 'autoplay');
+    //   this.Scene7 = this.player.tech_;
 
-      assert.strictEqual(
-        this.Scene7.s7.params.params.autoplay,
-        1,
-        'enables autoplay when set in VideoJS options.'
-      );
-    });
+    //   this.Scene7._setupS7Params();
+    //   this.Scene7._initViewer();
+
+    //   assert.strictEqual(
+    //     this.Scene7.s7.params.params.autoplay,
+    //     '1',
+    //     'enables autoplay when set in VideoJS options.'
+    //   );
+    // });
   });
 
   module('Sets up display', function() {
@@ -260,16 +265,105 @@ QUnit.module('videojs-scene7', {
   });
 
   module('Binds VideoJS events to Scene7 events.', () => {
-    skip('Sets up fullscreen events.', (assert) => { });
     skip('Sets up playback events.', (assert) => { });
     skip('Sets up volume events.', (assert) => { });
     skip('Sets up loading events.', (assert) => { });
   });
 
   module('manages the source of the Scene7 video.', () => {
-    skip('src()', (assert) => { });
-    skip('srcSet()', (assert) => { });
-    skip('currentSrc()', (assert) => { });
+    test('sets the provided <source>', function(assert) {
+      const sdk = this.sdk;
+      const Scene7 = this.Scene7;
+      const params = Scene7.s7.params;
+      const expected = this.source.getAttribute('src');
+
+      Scene7._initViewer();
+      Scene7.s7.mediaSet = sdk.set.MediaSet(null, params, 'mediaSet');
+
+      assert.expect(2);
+      assert.strictEqual(
+        params.params['MediaSet.asset'],
+        expected,
+        'sets the Scene7 ParametersManager to match <source>.'
+      );
+
+      assert.strictEqual(
+        this.Scene7.s7.mediaSet.component.mediaSet_,
+        expected,
+        'sets the Scene7 MediaSet  to match <source>.'
+      );
+    });
+
+    test('src() //deprecated for currentSrc()', function(assert) {
+      const Scene7 = this.Scene7;
+      const expected = this.source.getAttribute('src');
+
+      assert.strictEqual(
+        Scene7.src().src,
+        expected,
+        'returns the currently set source object'
+      );
+    });
+
+    // skipping because the S7 API for managing media sets is async event-driven
+    skip('src(obj) // deprecated for setSrc(obj)', function(assert) {
+      const expected = _getRandomAlphaString();
+      const Scene7 = this.Scene7;
+      const params = Scene7.s7.params;
+
+      Scene7._initViewer();
+      Scene7.src({ src: expected, type: 'videojs/scene7'});
+
+      assert.expect(2);
+      assert.strictEqual(
+        params.params['MediaSet.asset'],
+        expected,
+        'updates S7 ParameterManager with new set source.'
+      );
+
+      assert.strictEqual(
+        Scene7.s7.mediaSet.component.mediaSet_,
+        expected,
+        'updates MediaSet with new set source.'
+      );
+    });
+
+    // skipping because the S7 API for managing media sets is async event-driven
+    skip('srcSet(obj)', function(assert) {
+      const expected = _getRandomAlphaString();
+      const Scene7 = this.Scene7;
+      const params = Scene7.s7.params;
+
+      Scene7._initViewer();
+      Scene7.setSrc({ src: expected, type: 'videojs/scene7'});
+
+      assert.expect(2);
+      assert.strictEqual(
+        params.params['MediaSet.asset'],
+        expected,
+        'updates S7 ParameterManager with new set source.'
+      );
+
+      assert.strictEqual(
+        Scene7.s7.mediaSet.component.mediaSet_,
+        expected,
+        'updates MediaSet with new set source.'
+      );
+    });
+
+    test('currentSrc()', function(assert) {
+      const Scene7 = this.Scene7;
+      const expected = this.source.getAttribute('src');
+
+      Scene7._initViewer();
+
+      assert.expect(1);
+      assert.strictEqual(
+        Scene7.currentSrc().src,
+        expected,
+        'returns the currently set source object'
+      );
+    });
   });
 
   module('binds VideoJS playback controls to the Scene7 video.', function() {

@@ -31,15 +31,27 @@ npm install --save videojs-scene7
 
 To include videojs-scene7 on your website or web application, use any of the following methods.
 
-### `<script>` Tag
+### `<script>` Tag with a `<video>` tag
 
-This is the simplest case. Get the script in whatever way you prefer and include the plugin _after_ you include [video.js][videojs], so that the `videojs` global is available.
+This is the simplest case. Get the script in whatever way you prefer and include the plugin _after_ you include [video.js][videojs], so that the `videojs` global is available. Make sure to set:
+- techOrder so VideoJS will leverage the Scene7 plugin
+- source of the Scene7 MediaSet
+- the type to `videojs/scene7`
+- The Scene7 [player options](#options)
 
 ```html
 <script src="//path/to/video.min.js"></script>
 <script src="//path/to/videojs-scene7.min.js"></script>
+<video id='my-video'
+  controls
+  autoplay
+  >
+  <source src='Scene7SharedAssets/Adobe_QBP-AVS' type='videojs/scene7'>
+</video>
 <script>
-  var player = videojs('my-video');
+  var player = videojs('my-video',{
+    techOrder: [ 'Scene7']
+  });
 
   player.scene7();
 </script>
@@ -57,7 +69,9 @@ var videojs = require('video.js');
 // to a variable.
 require('videojs-scene7');
 
-var player = videojs('my-video');
+var player = videojs('my-video',{
+  techOrder: [ 'Scene7']
+});
 
 player.scene7();
 ```
@@ -68,11 +82,39 @@ When using with RequireJS (or another AMD library), get the script in whatever w
 
 ```js
 require(['video.js', 'videojs-scene7'], function(videojs) {
-  var player = videojs('my-video');
+  var player = videojs('my-video',{
+    techOrder: [ 'Scene7']
+  });
 
   player.scene7();
 });
 ```
+
+## Options
+Provide Scene7 options to VideoJS through the normal VideoJS options object or data-options attribute. The options
+
+```js
+options: {
+  s7: {
+    serverurl: "http://s7d1.scene7.com/is/image/", // Path to Scene7 server
+    videoserverurl: "http://s7d1.scene7.com/is/content/", // 
+  }
+}
+```
+
+### `serverurl`
+
+URL to the image API for Scene7. Default when not set is `http://s7d1.scene7.com/is/image/`
+
+### `videoserverurl`
+
+URL to the content API for Scene7. Default when not set is `http://s7d1.scene7.com/is/content/`
+
+### `contenturl`
+
+URL to the content API for Scene7 where losed caption and chapter navigation assets are located. Default when not set is `http://s7d1.scene7.com/is/content/`
+
+
 
 ## License
 
