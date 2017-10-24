@@ -1,3 +1,6 @@
+<a name="0.5.1"></a>
+## [0.5.1](https://github.com/amclin/videojs-scene7/compare/v0.5.0...v0.5.1) (2017-10-24)
+
 <a name="0.5.0"></a>
 # [0.5.0](https://github.com/amclin/videojs-scene7/compare/v0.4.0...v0.5.0) (2017-10-24)
 
