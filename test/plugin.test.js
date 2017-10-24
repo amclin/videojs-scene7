@@ -323,56 +323,30 @@ QUnit.module('videojs-scene7', {
       );
     });
 
-    test('muted()', function(assert) {
+    test('muted(), setMuted()', function(assert) {
       const Scene7 = this.Scene7;
 
       Scene7._initViewer();
 
       assert.expect(2);
-      Scene7.s7.player.muted = function() {
-        return true;
-      };
-      assert.strictEqual(
-        Scene7.muted(),
-        true,
-        'responds true when video is currently muted.'
-      );
-
-      Scene7.s7.player.muted = function() {
-        return false;
-      };
-      assert.strictEqual(
-        Scene7.muted(),
-        false,
-        'responds false when video is currently not muted.'
-      );
-    });
-
-    test('setMuted(true)', function(assert) {
-      const Scene7 = this.Scene7;
-
-      Scene7._initViewer();
-
-      assert.expect(1);
       Scene7.setMuted(true);
+      // Scene7.s7.player.muted = function() {
+      //   return true;
+      // };
       assert.strictEqual(
-        Scene7.s7.player.muted(),
+        Scene7.muted(),
         true,
-        'mutes the video when passed true.'
+        'mutes video and reports muted'
       );
-    });
 
-    test('setMuted(false)', function(assert) {
-      const Scene7 = this.Scene7;
-
-      Scene7._initViewer();
-
-      assert.expect(1);
+      // Scene7.s7.player.muted = function() {
+      //   return false;
+      // };
       Scene7.setMuted(false);
       assert.strictEqual(
-        Scene7.s7.player.muted(),
+        Scene7.muted(),
         false,
-        'unmutes the video when passed false.'
+        'unmutes video and reports unmuted'
       );
     });
   });
