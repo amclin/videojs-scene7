@@ -266,8 +266,105 @@ QUnit.module('videojs-scene7', {
 
   module('Binds VideoJS events to Scene7 events.', () => {
     skip('Sets up playback events.', (assert) => { });
-    skip('Sets up volume events.', (assert) => { });
     skip('Sets up loading events.', (assert) => { });
+  });
+
+  module('manages volume controls.', function() {
+    test('canControlVolume()', function(assert) {
+      const Scene7 = this.Scene7;
+
+      Scene7._initViewer();
+
+      assert.expect(2);
+
+      Scene7.s7.player.supportsVolumeControl = function() {
+        return true;
+      };
+      assert.strictEqual(
+        Scene7.canControlVolume(),
+        true,
+        'responds true when S7 indicates volume can be controlled.'
+      );
+
+      Scene7.s7.player.supportsVolumeControl = function() {
+        return false;
+      };
+      assert.strictEqual(
+        Scene7.canControlVolume(),
+        false,
+        'responds false when S7 indicates volume cannot be controlled.'
+      );
+    });
+
+    test('volume()', function(assert) {
+      const Scene7 = this.Scene7;
+
+      Scene7._initViewer();
+
+      assert.expect(1);
+      assert.strictEqual(
+        Scene7.volume(),
+        0.5,
+        'returns the current volume setting.'
+      );
+    });
+
+    test('setVolume()', function(assert) {
+      const Scene7 = this.Scene7;
+
+      Scene7.setVolume(0.3);
+
+      assert.expect(2);
+      assert.strictEqual(
+        Scene7.volume(),
+        0.3,
+        'sets the volume to a specified level.'
+      );
+
+      // Mute the video
+      Scene7.setMuted(true);
+      // Set the volume
+      Scene7.setVolume(0.8);
+      assert.strictEqual(
+        (Scene7.muted() === false && Scene7.volume() === 0.8),
+        true,
+        'unmutes the video when setting volume.'
+      );
+    });
+
+    skip('muted()', function(assert) {
+      assert.expect(2);
+      assert.strictEqual(
+        false,
+        true,
+        'responds true when video is currently muted.'
+      );
+      assert.strictEqual(
+        true,
+        false,
+        'responds false when video is currently not muted.'
+      );
+    });
+
+    skip('setMuted()', function(assert) {
+      const Scene7 = this.Scene7;
+
+      assert.expect(2);
+
+      Scene7.setMuted(true);
+      assert.strictEqual(
+        Scene7.muted(),
+        true,
+        'mutes the video when passed true.'
+      );
+
+      Scene7.setMuted(false);
+      assert.strictEqual(
+        Scene7.muted(),
+        false,
+        'unmutes the video when passed false.'
+      );
+    });
   });
 
   module('manages the source of the Scene7 video.', () => {

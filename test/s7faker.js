@@ -66,8 +66,16 @@ const player = {
     return player.defaults.loadedPosition;
   },
 
+  supportsVolumeControl() {
+    return true;
+  },
+
   getVolume() {
-    return player.defaults.vol;
+    return player.defaults.volume;
+  },
+
+  setVolume(vol) {
+    player.defaults.volume = vol;
   },
 
   getWidth() {

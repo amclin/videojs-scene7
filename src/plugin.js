@@ -374,6 +374,19 @@ class Scene7 extends Tech {
   }
 
   /**
+   * Check if the volume can be changed in this browser/device.
+   * Volume cannot be changed in a lot of mobile devices.
+   * Specifically, it can't be changed from 1 on iOS.
+   *
+   * @return {boolean}
+   *         - True if volume can be controlled
+   *         - False otherwise
+   */
+  canControlVolume() {
+    return this.s7.player.supportsVolumeControl();
+  }
+
+  /**
    * Get the current volume level
    *
    * @return {number}
@@ -383,6 +396,51 @@ class Scene7 extends Tech {
    **/
   volume() {
     return this.s7.player.getVolume();
+  }
+
+  /**
+   * Set the value of `volume` on the media element. `volume` indicates the current
+   * audio level as a percentage in decimal form. This means that 1 is 100%, 0.5 is 50%, and
+   * so on.
+   *
+   * @method Scene7#setVolume
+   * @param {number} percentAsDecimal
+   *        The volume percent as a decimal. Valid range is from 0-1.
+   * @return {undefined} on success
+   *
+   * @see [Spec]{@link https://www.w3.org/TR/html5/embedded-content-0.html#dom-a-volume}
+   */
+  setVolume(vol) {
+    return this.s7.player.setVolume(vol);
+  }
+
+  /**
+   * Check if video is muted
+   *
+   * @return {boolean} muted
+   *  - True when video is muted
+   *  - False when video is not muted
+   * @method muted
+   */
+  muted() {
+    return this.s7.player.muted();
+  }
+
+  /**
+   * Mute the video
+   *
+   * @method Scene7#setMuted
+   * @param {boolean} muted
+   *        - True if the audio should be set to silent
+   *        - False otherwise
+   * @param {undefined} on success
+   */
+  setMuted(muted) {
+    const player = this.s7.player;
+
+    muted = !!muted;
+
+    return player.mute(muted);
   }
 
   /**
