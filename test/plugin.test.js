@@ -312,55 +312,65 @@ QUnit.module('videojs-scene7', {
     test('setVolume()', function(assert) {
       const Scene7 = this.Scene7;
 
+      Scene7._initViewer();
       Scene7.setVolume(0.3);
 
-      assert.expect(2);
+      assert.expect(1);
       assert.strictEqual(
         Scene7.volume(),
         0.3,
         'sets the volume to a specified level.'
       );
-
-      // Mute the video
-      Scene7.setMuted(true);
-      // Set the volume
-      Scene7.setVolume(0.8);
-      assert.strictEqual(
-        (Scene7.muted() === false && Scene7.volume() === 0.8),
-        true,
-        'unmutes the video when setting volume.'
-      );
     });
 
-    skip('muted()', function(assert) {
+    test('muted()', function(assert) {
+      const Scene7 = this.Scene7;
+
+      Scene7._initViewer();
+
       assert.expect(2);
+      Scene7.s7.player.muted = function() {
+        return true;
+      };
       assert.strictEqual(
-        false,
+        Scene7.muted(),
         true,
         'responds true when video is currently muted.'
       );
+
+      Scene7.s7.player.muted = function() {
+        return false;
+      };
       assert.strictEqual(
-        true,
+        Scene7.muted(),
         false,
         'responds false when video is currently not muted.'
       );
     });
 
-    skip('setMuted()', function(assert) {
+    test('setMuted(true)', function(assert) {
       const Scene7 = this.Scene7;
 
-      assert.expect(2);
+      Scene7._initViewer();
 
+      assert.expect(1);
       Scene7.setMuted(true);
       assert.strictEqual(
-        Scene7.muted(),
+        Scene7.s7.player.muted(),
         true,
         'mutes the video when passed true.'
       );
+    });
 
+    test('setMuted(false)', function(assert) {
+      const Scene7 = this.Scene7;
+
+      Scene7._initViewer();
+
+      assert.expect(1);
       Scene7.setMuted(false);
       assert.strictEqual(
-        Scene7.muted(),
+        Scene7.s7.player.muted(),
         false,
         'unmutes the video when passed false.'
       );

@@ -438,7 +438,8 @@ class Scene7 extends Tech {
   setMuted(muted) {
     const player = this.s7.player;
 
-    muted = !!muted;
+    // ensure boolean
+    muted = Boolean(muted);
 
     return player.mute(muted);
   }

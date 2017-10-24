@@ -30,7 +30,8 @@ const player = {
     duration: 100000,
     loadedPosition: 75000,
     width: 200,
-    height: 100
+    height: 100,
+    isMuted: false
   },
 
   play() {
@@ -76,6 +77,14 @@ const player = {
 
   setVolume(vol) {
     player.defaults.volume = vol;
+  },
+
+  mute(m) {
+    player.defaults.isMuted = m;
+  },
+
+  muted() {
+    return player.defaults.isMuted;
   },
 
   getWidth() {
