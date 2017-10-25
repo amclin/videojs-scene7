@@ -241,6 +241,42 @@ QUnit.module('videojs-scene7', {
     // });
   });
 
+  module('Sets up looping playaback', function() {
+    skip('videojs options', function(assert) {
+      assert.expect(2);
+
+      // Set a new player with loop enabled
+      this.player.dispose();
+      this.clock.restore();
+      this.video.setAttribute('loop', 'loop');
+      this.player = videojs(this.video, testOptions);
+      this.clock.tick(2);
+      this.Scene7 = this.player.tech({ IWillNotUseThisInPlugins: true });
+      this.Scene7._initViewer();
+
+      assert.strictEqual(
+        this.Scene7.s7.params.params.loop,
+        true,
+        'sets the Scene7 player to loop the video.'
+      );
+
+      // Set a new player with loop disabled
+      this.player.dispose();
+      this.clock.restore();
+      this.video.removeAttribute('loop');
+      this.player = videojs(this.video, testOptions);
+      this.clock.tick(2);
+      this.Scene7 = this.player.tech({ IWillNotUseThisInPlugins: true });
+      this.Scene7._initViewer();
+
+      assert.strictEqual(
+        this.Scene7.s7.params.params.loop,
+        false,
+        'sets the Scene7 player to not loop the video.'
+      );
+    });
+  });
+
   module('Sets up display', function() {
     test('injectS7Player()', function(assert) {
       let s7El = {};

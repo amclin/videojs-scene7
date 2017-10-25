@@ -117,13 +117,15 @@ class Scene7 extends Tech {
    */
   _initViewer() {
     const params = this.s7.params;
-    const autoplay = (this.options_.autoplay) ? '1' : '0';
 
     // Add source Media Set from <video> <source> tag
     this.settings['MediaSet.asset'] = this.source.src;
 
     // Add autoplay setting from VideoJS
-    this.settings.autoplay = autoplay;
+    this.settings.autoplay = (this.options_.autoplay) ? '1' : '0';
+
+    // Add loop setting from VideoJS
+    this.settings.loop = (this.options_.autoplay) ? true : false;
 
     // Provide settings to Scene7 ParametersManager
     for (const param in this.settings) {
