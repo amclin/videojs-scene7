@@ -331,18 +331,12 @@ QUnit.module('videojs-scene7', {
 
       assert.expect(2);
       Scene7.setMuted(true);
-      // Scene7.s7.player.muted = function() {
-      //   return true;
-      // };
       assert.strictEqual(
         Scene7.muted(),
         true,
         'mutes video and reports muted'
       );
 
-      // Scene7.s7.player.muted = function() {
-      //   return false;
-      // };
       Scene7.setMuted(false);
       assert.strictEqual(
         Scene7.muted(),
@@ -350,6 +344,7 @@ QUnit.module('videojs-scene7', {
         'unmutes video and reports unmuted'
       );
     });
+
   });
 
   module('manages the source of the Scene7 video.', () => {

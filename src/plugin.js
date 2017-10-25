@@ -427,13 +427,13 @@ class Scene7 extends Tech {
   }
 
   /**
-   * Mute the video
+   * Mute/Unmute the video
    *
    * @method Scene7#setMuted
    * @param {boolean} muted
    *        - True if the audio should be set to silent
    *        - False otherwise
-   * @param {undefined} on success
+   * @return {undefined} on success
    */
   setMuted(muted) {
     const player = this.s7.player;
@@ -441,7 +441,11 @@ class Scene7 extends Tech {
     // ensure boolean
     muted = Boolean(muted);
 
-    return player.mute(muted);
+    if (muted) {
+      return player.mute(muted);
+    }
+
+    return player.unmute();
   }
 
   /**

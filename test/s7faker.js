@@ -80,7 +80,13 @@ const player = {
   },
 
   mute(m) {
-    player.defaults.isMuted = m;
+    if (m) {
+      player.defaults.isMuted = true;
+    }
+  },
+
+  unmute() {
+    player.defaults.isMuted = false;
   },
 
   muted() {
