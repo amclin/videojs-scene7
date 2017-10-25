@@ -104,7 +104,7 @@ QUnit.module('videojs-scene7', {
     this.fixture.appendChild(this.video);
     this.player = videojs(this.video, testOptions);
     this.clock.tick(2);
-    this.Scene7 = this.player.tech(true);
+    this.Scene7 = this.player.tech({ IWillNotUseThisInPlugins: true });
     this.sdk = window.s7sdk;
   },
 
