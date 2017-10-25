@@ -144,7 +144,7 @@ class Scene7 extends Tech {
    * Create the Scene7 Adaptive Video media set
    *
    * @param {string} src
-   *    - Optional media set path to use. Whatever is in params will be used when not provided.
+   *    - Optional media set path to use. Replaces value in ParamsManager when provided.
    */
   _setupS7MediaSet(src) {
     const that = this;
@@ -400,8 +400,8 @@ class Scene7 extends Tech {
 
   /**
    * Set the value of `volume` on the media element. `volume` indicates the current
-   * audio level as a percentage in decimal form. This means that 1 is 100%, 0.5 is 50%, and
-   * so on.
+   * audio level as a percentage in decimal form. This means that 1 is 100%,
+   * 0.5 is 50%, and * so on.
    *
    * @method Scene7#setVolume
    * @param {number} percentAsDecimal
@@ -410,8 +410,8 @@ class Scene7 extends Tech {
    *
    * @see [Spec]{@link https://www.w3.org/TR/html5/embedded-content-0.html#dom-a-volume}
    */
-  setVolume(vol) {
-    return this.s7.player.setVolume(vol);
+  setVolume(percentAsDecimal) {
+    return this.s7.player.setVolume(percentAsDecimal);
   }
 
   /**
@@ -588,14 +588,22 @@ class Scene7 extends Tech {
     }
 
     // Events that require some logic when mapping
-    player.addEventListener(sdk.event.VideoEvent.NOTF_LOAD_PROGRESS, function(event) {
-      that._handleLoadProgress();
-    }, false);
+    player.addEventListener(
+      sdk.event.VideoEvent.NOTF_LOAD_PROGRESS,
+      function(event) {
+        that._handleLoadProgress();
+      },
+      false
+    );
 
     // Video is switched into playable/pausable/replayable state
-    player.addEventListener(sdk.event.CapabilityStateEvent.NOTF_VIDEO_CAPABILITY_STATE, function(event) {
-      that._handleStateChange(event);
-    }, false);
+    player.addEventListener(
+      sdk.event.CapabilityStateEvent.NOTF_VIDEO_CAPABILITY_STATE,
+      function(event) {
+        that._handleStateChange(event);
+      },
+      false
+    );
   }
 
   /**
