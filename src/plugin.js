@@ -6,22 +6,13 @@ const Tech = videojs.getComponent('Tech');
 
 // Default options for the plugin.
 const defaults = {
-  'serverurl': 'http://s7d1.scene7.com/is/image/',
-  'videoserverurl': 'http://s7d1.scene7.com/is/content/',
+  serverurl: 'http://s7d1.scene7.com/is/image/',
+  videoserverurl: 'http://s7d1.scene7.com/is/content/',
   // specify content url for closed caption and chapter navigation asset
-  'contenturl': 'http://s7d1.scene7.com/is/content/',
-  'MediaSet.asset': 'Scene7SharedAssets/Adobe_QBP-AVS',
-  // specify closed caption file
-  'caption': 'Scene7SharedAssets/adobe_qbc_final_cc,1',
-  // specify chapter navigation file
-  'navigation': 'Scene7SharedAssets/adobe_qbc_final_nc',
-  // disable video player to play video after load operation has completed
-  // 'autoplay': '0',
-  // enable single click on video to toggle between play and pause
-  // 'singleclick': 'playPause',
+  contenturl: 'http://s7d1.scene7.com/is/content/',
   // configures the icon effect when video is in paused state
   // as follows: enable,# times to appear, fade duration, auto-hide duration
-  'iconeffect': '0,-1,0.3,0'
+  iconeffect: '0,-1,0.3,0'
 };
 
 // Scene7 tracks at a different timescale than VideoJS
@@ -48,17 +39,15 @@ class Scene7 extends Tech {
   *        Callback function to call when the `Scene7` Tech is ready.
   */
   constructor(options, ready) {
-    super(options, ready);
+    // Merge the videojs options with the defaults
+    options = Object.assign({}, defaults, options);
 
-    // Merge the Scene7
-    this.settings = Object.assign({}, defaults, options.s7);
+    super(options, ready);
 
     this.s7 = {};
 
-    this.source = options.source;
-
     this._loadS7SDK();
-    this._setupS7Params();
+    this._setupS7Params(options);
   }
 
   /**
@@ -113,32 +102,52 @@ class Scene7 extends Tech {
   }
 
   /**
+   * Maps videojs options to Scene7 parameters
+   * and sets them in the ParameterManager object
+   **/
+  setParameters() {
+    const paramMgr = this.s7.params;
+    const options = this.options_;
+    const params = {};
+    // List of supported settings to get from the videojs options
+    const settings = [
+      'serverurl',
+      'videoserverurl',
+      'contenturl',
+      'loop',
+      'iconeffect'
+    ];
+
+    // Get supported settings from videojs
+    settings.forEach(function(setting) {
+      if (typeof options[setting] !== 'undefined') {
+        params[setting] = options[setting];
+      }
+    });
+
+    // Add source Media Set from <video> <source> tag
+    params['MediaSet.asset'] = options.source.src;
+
+    // Convert autoplay setting from boolean to numeric strings
+    params.autoplay = (this.options_.autoplay) ? '1' : '0';
+
+    // Provide settings to Scene7 ParametersManager
+    for (const param in params) {
+      paramMgr.push(param, params[param]);
+    }
+
+  }
+
+  /**
    * Initialize the various parts of the Scene7 Video Player
    */
   _initViewer() {
-    const params = this.s7.params;
-
-    // Add source Media Set from <video> <source> tag
-    this.settings['MediaSet.asset'] = this.source.src;
-
-    // Add autoplay setting from VideoJS
-    this.settings.autoplay = (this.options_.autoplay) ? '1' : '0';
-
-    // Add loop setting from VideoJS
-    this.settings.loop = (this.options_.autoplay) ? true : false;
-
-    // Provide settings to Scene7 ParametersManager
-    for (const param in this.settings) {
-      params.push(param, this.settings[param]);
-    }
-
+    this.setParameters();
     this._setupS7MediaSet();
     this._setupS7Container();
     this._setupS7Player();
     this._mapEvents();
-
     this.injectS7Player();
-
     this.triggerReady();
   }
 
@@ -156,7 +165,7 @@ class Scene7 extends Tech {
 
     // Update parameters if specified
     if (src) {
-      params['MediaSet.asset'] = src;
+      params.params['MediaSet.asset'] = src;
     }
 
     // Get new MediaSet object
@@ -291,7 +300,7 @@ class Scene7 extends Tech {
    *         The current source object from the Scene7 tech.
    */
   currentSrc() {
-    return this.source;
+    return this.options_.source;
   }
 
   /**

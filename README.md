@@ -95,7 +95,7 @@ Provide Scene7 options to VideoJS through the normal VideoJS options object or d
 
 ```js
 options: {
-  s7: {
+  scene7: {
     serverurl: "http://s7d1.scene7.com/is/image/", // Path to Scene7 server
     videoserverurl: "http://s7d1.scene7.com/is/content/", // 
   }
