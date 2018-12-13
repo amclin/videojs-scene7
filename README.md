@@ -1,5 +1,7 @@
 # videojs-scene7
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/amclin/videojs-scene7.svg)](https://greenkeeper.io/)
+
 [![Build Status][travis-icon]][travis-link]
 [![Coverage Status][coveralls-icon]][coveralls-link]
 
