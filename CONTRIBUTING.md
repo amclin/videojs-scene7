@@ -16,6 +16,9 @@ Refer to the [video.js plugin conventions][conventions] for more detail on best 
 
 When you've made your changes, push your commit(s) to your fork and issue a pull request against the original repository.
 
+#### Commit messages
+This project follows [Angular commit message syntax](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit) which is used to automate the process of generating appropriate release numbers. Therefore breaking changes must be declared in the commit message.
+
 ### Running Tests
 
 Testing is a crucial part of any software project. For all but the most trivial changes (typos, etc) test cases are expected. Tests are run in actual browsers using [Karma][karma].
