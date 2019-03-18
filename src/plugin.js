@@ -143,8 +143,8 @@ class Scene7 extends Tech {
    */
   _initViewer() {
     this.setParameters();
-    this._setupS7MediaSet();
     this._setupS7Container();
+    this._setupS7MediaSet();
     this._setupS7Player();
     this._mapEvents();
     this.injectS7Player();
@@ -160,6 +160,7 @@ class Scene7 extends Tech {
   _setupS7MediaSet(src) {
     const that = this;
     const sdk = that.s7.sdk;
+    const container = that.s7.container;
     const params = that.s7.params;
     let mediaSet = {};
 
@@ -169,7 +170,7 @@ class Scene7 extends Tech {
     }
 
     // Get new MediaSet object
-    mediaSet = new sdk.set.MediaSet(null, params, 'mediaSet');
+    mediaSet = new sdk.set.MediaSet(container, params, container.parentId + '-s7mediaSet');
 
     // Add MediaSet event listeners
     mediaSet.addEventListener(sdk.event.AssetEvent.NOTF_SET_PARSED, function(event) {
@@ -188,7 +189,10 @@ class Scene7 extends Tech {
     const that = this;
     const sdk = that.s7.sdk;
     const params = that.s7.params;
-    const container = new sdk.common.Container(null, params, 'cont');
+
+    that.el_.id = that.el_.id || that.getUniqueId();
+
+    const container = new sdk.common.Container(that.el_.id, params, that.el_.id + '-s7container');
 
     // Setup events to resize the player when the container changes size/fullscreen
     container.addEventListener(sdk.event.ResizeEvent.COMPONENT_RESIZE, function(event) {
@@ -223,7 +227,7 @@ class Scene7 extends Tech {
     const sdk = that.s7.sdk;
     const container = that.s7.container;
     const params = that.s7.params;
-    const player = new sdk.video.VideoPlayer(container, params, 's7viewer');
+    const player = new sdk.video.VideoPlayer(container, params, container.parentId + '-s7viewer');
 
     that.s7.player = player;
   }
@@ -714,6 +718,19 @@ class Scene7 extends Tech {
 
     that.resizeContainer(vjsEl.offsetWidth, vjsEl.offsetHeight);
     that.resizeVideo(vjsEl.offsetWidth, vjsEl.offsetHeight);
+  }
+
+  /**
+   * Genterate a unique id
+   * http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
+   */
+  getUniqueId() {
+    return 'x-' + 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      const r = Math.random() * 16 | 0;
+      const v = c === 'x' ? r : (r & 0x3 | 0x8);
+
+      return v.toString(16);
+    });
   }
 }
 

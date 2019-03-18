@@ -1,7 +1,7 @@
 # videojs-scene7
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/amclin/videojs-scene7.svg)](https://greenkeeper.io/)
-
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![Build Status][travis-icon]][travis-link]
 [![Coverage Status][coveralls-icon]][coveralls-link]
 
@@ -17,9 +17,13 @@ Tech plugin for VideoJS to support Scene7 players
 
 - [Installation](#installation)
 - [Usage](#usage)
-  - [`<script>` Tag](#script-tag)
+  - [`<script>` Tag with a `<video>` tag](#script-tag-with-a-video-tag)
   - [Browserify/CommonJS](#browserifycommonjs)
   - [RequireJS/AMD](#requirejsamd)
+- [Options](#options)
+  - [`serverurl`](#serverurl)
+  - [`videoserverurl`](#videoserverurl)
+  - [`contenturl`](#contenturl)
 - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->

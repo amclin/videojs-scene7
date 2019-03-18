@@ -1,3 +1,17 @@
+<a name="0.7.1"></a>
+## 0.7.1 (2019-03-18)
+
+### Bugfixes
+* #10 Scene7 Player is not supporting multiple videos on single page
+
+### Chores
+
+* enable semantic release ([a486d7a](https://github.com/amclin/videojs-scene7/commit/a486d7a))
+
+### Tests
+
+* supports unit tests in Safari on Mojave ([99fab81](https://github.com/amclin/videojs-scene7/commit/99fab81))
+
 <a name="0.7.0"></a>
 # [0.7.0](https://github.com/amclin/videojs-scene7/compare/v0.6.0...v0.7.0) (2017-10-26)
 

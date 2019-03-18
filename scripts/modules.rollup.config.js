@@ -10,7 +10,7 @@ import json from 'rollup-plugin-json';
 
 export default {
   moduleName: 'videojsScene7',
-  entry: 'src/plugin.js',
+  input: 'src/plugin.js',
   external: [
     'global',
     'global/document',

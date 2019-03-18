@@ -11,7 +11,7 @@ import resolve from 'rollup-plugin-node-resolve';
 
 export default {
   moduleName: 'videojsScene7Tests',
-  entry: 'test/**/*.test.js',
+  input: ['test/**/*.test.js'],
   dest: 'test/dist/bundle.js',
   format: 'iife',
   external: [
