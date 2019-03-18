@@ -11,7 +11,7 @@ import resolve from 'rollup-plugin-node-resolve';
 
 export default {
   moduleName: 'videojsScene7',
-  entry: 'src/plugin.js',
+  input: 'src/plugin.js',
   dest: 'dist/videojs-scene7.js',
   format: 'umd',
   external: ['video.js'],
