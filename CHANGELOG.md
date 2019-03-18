@@ -1,6 +1,9 @@
 <a name="0.7.1"></a>
 ## 0.7.1 (2019-03-18)
 
+### Bugfixes
+* #10 Scene7 Player is not supporting multiple videos on single page
+
 ### Chores
 
 * enable semantic release ([a486d7a](https://github.com/amclin/videojs-scene7/commit/a486d7a))
