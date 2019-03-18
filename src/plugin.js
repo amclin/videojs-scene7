@@ -192,7 +192,7 @@ class Scene7 extends Tech {
 
     that.el_.id = that.el_.id || that.getUniqueId();
 
-    const container = new sdk.common.Container(that.el_.id, params, that.el_.id + "-s7container");
+    const container = new sdk.common.Container(that.el_.id, params, that.el_.id + '-s7container');
 
     // Setup events to resize the player when the container changes size/fullscreen
     container.addEventListener(sdk.event.ResizeEvent.COMPONENT_RESIZE, function(event) {
@@ -726,7 +726,9 @@ class Scene7 extends Tech {
    */
   getUniqueId() {
     return 'x-' + 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r&0x3 | 0x8);
+      const r = Math.random() * 16 | 0;
+      const v = c === 'x' ? r : (r & 0x3 | 0x8);
+
       return v.toString(16);
     });
   }
