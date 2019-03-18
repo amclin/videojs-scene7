@@ -15,9 +15,13 @@ Tech plugin for VideoJS to support Scene7 players
 
 - [Installation](#installation)
 - [Usage](#usage)
-  - [`<script>` Tag](#script-tag)
+  - [`<script>` Tag with a `<video>` tag](#script-tag-with-a-video-tag)
   - [Browserify/CommonJS](#browserifycommonjs)
   - [RequireJS/AMD](#requirejsamd)
+- [Options](#options)
+  - [`serverurl`](#serverurl)
+  - [`videoserverurl`](#videoserverurl)
+  - [`contenturl`](#contenturl)
 - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
