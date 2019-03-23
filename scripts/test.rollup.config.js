@@ -10,10 +10,12 @@ import multiEntry from 'rollup-plugin-multi-entry';
 import resolve from 'rollup-plugin-node-resolve';
 
 export default {
-  moduleName: 'videojsScene7Tests',
+  name: 'videojsScene7Tests',
   input: ['test/**/*.test.js'],
-  dest: 'test/dist/bundle.js',
-  format: 'iife',
+  output: {
+    file: 'test/dist/bundle.js',
+    format: 'iife'
+  },
   external: [
     'qunit',
     'qunitjs',

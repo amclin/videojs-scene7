@@ -220,14 +220,10 @@ function dispatchEvent(name) {
 /**
  * Simulates Scene7's addEventListener
  *
- * @param {Object} arg Not implemented
- *    - unclear what this does, in S7 examples it's generally null
- * @param {Object} opts
- *    - A Scene7 ParameterManager containing configuration
- * @param {string} id
- *    - Used to set the ID on the <div> created for the container
- * @return {Object}
- *    - Returns a Scene7 container element
+ * @param {Object} arg Not implemented. Unclear what this does, in S7 examples it's generally null
+ * @param {Object} opts A Scene7 ParameterManager containing configuration
+ * @param {string} id Used to set the ID on the <div> created for the container
+ * @return {Object} Returns a Scene7 container element
  */
 function initContainer(arg, opts, id) {
   let node;
@@ -252,14 +248,10 @@ container.addEventListener = addEventListener;
 container.dispatchEvent = dispatchEvent;
 s7faker.common.Container = initContainer;
 container.requestFullScreen = function() {
-  container.dispatchEvent(
-    s7faker.event.ResizeEvent.FULLSCREEN_RESIZE
-  );
+  container.dispatchEvent(s7faker.event.ResizeEvent.FULLSCREEN_RESIZE);
 };
 container.cancelFullScreen = function() {
-  container.dispatchEvent(
-    s7faker.event.ResizeEvent.COMPONENT_RESIZE
-  );
+  container.dispatchEvent(s7faker.event.ResizeEvent.COMPONENT_RESIZE);
 };
 
 export default s7faker;

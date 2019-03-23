@@ -33,3 +33,6 @@ dist/
 docs/api/
 test/dist/
 test/coverage
+
+# Caches
+.eslintcache
