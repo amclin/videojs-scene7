@@ -29,7 +29,7 @@ const timeRatio = 1000;
  */
 class Scene7 extends Tech {
 
- /**
+  /**
   * Create an instance of this Tech.
   *
   * @param {Object} [options]
@@ -723,6 +723,8 @@ class Scene7 extends Tech {
   /**
    * Genterate a unique id
    * http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
+   *
+   * @return {string} A unique ID in the format x-xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx
    */
   getUniqueId() {
     return 'x-' + 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {

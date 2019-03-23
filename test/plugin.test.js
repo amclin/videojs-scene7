@@ -646,16 +646,14 @@ test('canPlaySource()', function(assert) {
   );
 
   assert.strictEqual(
-    Scene7.canPlaySource({
-      src: 'https://example.com/video',
-      type: 'videojs/scene7'}),
+    Scene7.canPlaySource({ src: 'https://example.com/video',
+      type: 'videojs/scene7' }),
     'probably',
     'returns \'probably\' when the mime type is videojs/scene7.'
   );
 
   assert.strictEqual(
-    Scene7.canPlayType({
-      src: 'https://example.com/video',
+    Scene7.canPlayType({ src: 'https://example.com/video',
       type: _getRandomAlphaString()}),
     '',
     'returns an empty string when the video mime type is not a match.'
