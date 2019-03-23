@@ -28,7 +28,6 @@ export default {
     'sinon',
     'video.js'
   ],
-  legacy: true,
   plugins: [
     multiEntry({
       exports: false
