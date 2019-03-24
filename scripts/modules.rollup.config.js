@@ -9,7 +9,6 @@ import babel from 'rollup-plugin-babel';
 import json from 'rollup-plugin-json';
 
 export default {
-  moduleName: 'videojsScene7',
   input: 'src/plugin.js',
   external: [
     'global',
@@ -17,10 +16,6 @@ export default {
     'global/window',
     'video.js'
   ],
-  globals: {
-    'video.js': 'videojs'
-  },
-  legacy: true,
   plugins: [
     json(),
     babel({
@@ -38,8 +33,21 @@ export default {
       ]
     })
   ],
-  targets: [
-    {dest: 'dist/videojs-scene7.cjs.js', format: 'cjs'},
-    {dest: 'dist/videojs-scene7.es.js', format: 'es'}
+  output: [
+    {
+      name: 'videojsScene7',
+      file: 'dist/videojs-scene7.cjs.js',
+      format: 'cjs',
+      globals: {
+        'video.js': 'videojs'
+      }
+    }, {
+      name: 'videojsScene7',
+      file: 'dist/videojs-scene7.es.js',
+      format: 'es',
+      globals: {
+        'video.js': 'videojs'
+      }
+    }
   ]
 };
