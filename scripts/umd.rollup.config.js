@@ -10,17 +10,16 @@ import json from 'rollup-plugin-json';
 import resolve from 'rollup-plugin-node-resolve';
 
 export default {
-  name: 'videojsScene7',
   input: 'src/plugin.js',
   output: {
+    name: 'videojsScene7',
     file: 'dist/videojs-scene7.js',
-    format: 'umd'
+    format: 'umd',
+    globals: {
+      'video.js': 'videojs'
+    }
   },
   external: ['video.js'],
-  globals: {
-    'video.js': 'videojs'
-  },
-  legacy: true,
   plugins: [
     resolve({
       browser: true,
