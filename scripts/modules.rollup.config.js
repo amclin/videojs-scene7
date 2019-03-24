@@ -16,7 +16,6 @@ export default {
     'global/window',
     'video.js'
   ],
-  legacy: true,
   plugins: [
     json(),
     babel({

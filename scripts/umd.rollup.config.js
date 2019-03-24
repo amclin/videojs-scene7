@@ -20,7 +20,6 @@ export default {
     }
   },
   external: ['video.js'],
-  legacy: true,
   plugins: [
     resolve({
       browser: true,
