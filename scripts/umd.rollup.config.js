@@ -31,17 +31,7 @@ export default {
       sourceMap: false
     }),
     babel({
-      babelrc: false,
-      exclude: 'node_modules/**',
-      presets: [
-        ['@babel/preset-env', {
-          loose: true,
-          modules: false
-        }]
-      ],
-      plugins: [
-        '@babel/plugin-transform-object-assign'
-      ]
+      babelrc: true
     })
   ]
 };

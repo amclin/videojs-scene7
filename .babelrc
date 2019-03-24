@@ -1,0 +1,15 @@
+{
+  "exclude": "node_modules/**",
+  "plugins": [
+    "@babel/plugin-transform-object-assign"
+  ],
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "loose": true,
+        "modules": false
+      }
+    ]
+  ]
+}
