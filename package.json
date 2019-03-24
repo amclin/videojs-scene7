@@ -72,7 +72,7 @@
   ],
   "dependencies": {
     "global": "^4.3.2",
-    "video.js": "^7.4.1"
+    "video.js": "^5.19.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^7.5.2",
