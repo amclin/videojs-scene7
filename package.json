@@ -113,7 +113,7 @@
     "rollup-watch": "^3.2.2",
     "semantic-release": "^15.13.3",
     "semver": "^6.0.0",
-    "sinon": "^7.2.2",
+    "sinon": "^7.3.2",
     "uglify-js": "^3.0.7",
     "videojs-standard": "^8.0.2"
   },
