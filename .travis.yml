@@ -25,6 +25,7 @@ after_success:
 env:
   - VJS=5
   - VJS=6
+  - VJS=7
 addons:
   firefox: latest
   apt:
