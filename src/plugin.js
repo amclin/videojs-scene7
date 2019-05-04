@@ -131,6 +131,9 @@ class Scene7 extends Tech {
     // Convert autoplay setting from boolean to numeric strings
     params.autoplay = (this.options_.autoplay) ? '1' : '0';
 
+    // Convert loop setting from boolean to numeric strings
+    params.loop = (this.options_.loop) ? '1' : '0';
+
     // Provide settings to Scene7 ParametersManager
     for (const param in params) {
       paramMgr.push(param, params[param]);

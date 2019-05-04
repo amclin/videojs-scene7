@@ -168,7 +168,7 @@ QUnit.module('videojs-scene7', {
 
   module('Sets Scene7 options', function() {
     skip('Sets Scene7 params', function(assert) {
-      assert.expect(3);
+      assert.expect(4);
 
       assert.strictEqual(
         this.Scene7.s7.params.serverurl,
@@ -186,6 +186,12 @@ QUnit.module('videojs-scene7', {
         this.Scene7.s7.params.contenturl,
         this.player.options.s7.contenturl,
         'sets specified contenturl parameter from VideoJS options.'
+      );
+
+      assert.strictEqual(
+        this.Scene7.s7.params.loop,
+        this.player.options.s7.loop ? '1' : '0',
+        'sets specified loop parameter from VideoJS options.'
       );
     });
 
