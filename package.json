@@ -98,7 +98,7 @@
     "karma-detect-browsers": "^2.2.5",
     "karma-firefox-launcher": "^1.0.1",
     "karma-ie-launcher": "^1.0.0",
-    "karma-qunit": "^3.0.0",
+    "karma-qunit": "^4.0.0",
     "karma-safarinative-launcher": "^1.1.0",
     "mkdirp": "^0.5.1",
     "node-static": "^0.7.9",
