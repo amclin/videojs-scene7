@@ -134,6 +134,16 @@ class Scene7 extends Tech {
     // Convert loop setting from boolean to numeric strings
     params.loop = (this.options_.loop) ? '1' : '0';
 
+    // Convert mute settings to numeric string
+    // TODO #8 According to Scene7 documentation this should
+    // be muting videos (<video muted> but doesn't appear to
+    // work. The property does come through from VideoJS as
+    // 'muted' and Scene7's documentation claims that the
+    // property it accepts is 'mutedvolume' (even though that
+    // isn't present in the SDKs)
+    // https://marketing.adobe.com/resources/help/en_US/s7/viewers_ref/r_html5_aem_int_video_config_attrib_videoplayer_mutevolume.html
+    params.mutedvolume = (this.options_.muted) ? '1' : '0';
+
     // Provide settings to Scene7 ParametersManager
     for (const param in params) {
       paramMgr.push(param, params[param]);
