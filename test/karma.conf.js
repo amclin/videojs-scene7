@@ -28,11 +28,6 @@ module.exports = function(config) {
       travisChrome: {
         base: 'Chrome',
         flags: ['--no-sandbox']
-      },
-      // TODO: Remove karma-safari-nativelauncher and replace with karma-safari-launcer if issue is resolved
-      // Safari on Mojave doesn't launch the same way: https://github.com/karma-runner/karma-safari-launcher/issues/29
-      Safari: {
-        base: 'SafariNative'
       }
     },
     detectBrowsers: detectBrowsers,
