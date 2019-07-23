@@ -99,7 +99,7 @@
     "karma-firefox-launcher": "^1.0.1",
     "karma-ie-launcher": "^1.0.0",
     "karma-qunit": "^4.0.0",
-    "karma-safarinative-launcher": "^1.1.0",
+    "karma-safari-applescript-launcher": "^0.1.0",
     "mkdirp": "^0.5.1",
     "node-static": "^0.7.9",
     "npm-run-all": "^4.0.2",
