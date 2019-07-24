@@ -51,7 +51,6 @@ export default {
         }]
       ],
       plugins: [
-        '@babel/external-helpers',
         'transform-object-assign'
       ]
     })
