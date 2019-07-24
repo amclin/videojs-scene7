@@ -378,7 +378,9 @@ class Scene7 extends Tech {
     // We track a state managed by events since Scene7 internal
     // player.resolveVideoProxy().paused() is unreliable and always
     // returns true
-    return this.state === 'paused';
+    // We pass 'ended' as paused since VideoJS expects this when a
+    // video is ended and pending replay.
+    return this.state === 'paused' || this.state === 'ended';
   }
 
   /**
