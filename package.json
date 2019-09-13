@@ -72,7 +72,7 @@
     "video.js": "^7.5.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.4",
+    "@babel/core": "^7.6.0",
     "@babel/preset-env": "^7.5.4",
     "@commitlint/cli": "^8.1.0",
     "@commitlint/config-angular": "^8.1.0",
