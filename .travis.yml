@@ -31,14 +31,13 @@ addons:
   chrome: stable
 jobs:
   include:
-    # Define the release stage that runs semantic-release
     - stage: release
+      # Only run release off master branch (semantic-release is smart enough)
+      # to handle this, but it reduces the amount of time spent in Travis builds
+      # if we preemptively exclude it
+      if: branch = master
       node_js: lts/*
-      # Advanced: optionally overwrite your default `script` step to skip the tests
-      # It may not needed if `npm run build` and `npm test` run in preversion step
-      # script: skip
-      deploy:
-        provider: script
-        skip_cleanup: true
-        script:
-          - npx semantic-release
+      provider: script
+      skip_cleanup: true
+      script:
+        - npx semantic-release
