@@ -28,11 +28,7 @@ env:
   - VJS=7
 addons:
   firefox: latest
-  apt:
-    sources:
-    - google-chrome
-    packages:
-    - google-chrome-stable
+  chrome: stable
 jobs:
   include:
     - stage: release
