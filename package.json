@@ -107,7 +107,7 @@
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-multi-entry": "^2.0.1",
     "rollup-plugin-node-resolve": "^5.0.0",
-    "semantic-release": "^16.0.0",
+    "semantic-release": "^17.0.0",
     "sinon": "^8.0.1",
     "uglify-js": "^3.5.10",
     "video.js": "^7.6.0",
