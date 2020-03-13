@@ -1,6 +1,6 @@
 {
   "name": "videojs-scene7",
-  "version": "0.7.1",
+  "version": "2.1.1",
   "description": "Tech plugin for VideoJS to support Scene7 players",
   "main": "dist/videojs-scene7.cjs.js",
   "module": "dist/videojs-scene7.es.js",
@@ -110,7 +110,7 @@
     "semantic-release": "^17.0.1",
     "sinon": "^9.0.0",
     "uglify-js": "^3.5.10",
-    "video.js": "^7.6.0",
+    "video.js": "^7.6.6",
     "videojs-standard": "^8.0.2"
   },
   "commitlint": {

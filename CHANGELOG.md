@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/amclin/videojs-scene7/compare/v2.1.0...v2.1.1) (2020-03-13)
+
+
+### Bug Fixes
+
+* **deps:** [security] bump acorn from 6.3.0 to 6.4.1 ([1ecd686](https://github.com/amclin/videojs-scene7/commit/1ecd686541ab1bb6feac0575c4ce8796d292cca2))
+
 # [2.1.0](https://github.com/amclin/videojs-scene7/compare/v2.0.0...v2.1.0) (2019-07-24)
 
 
@@ -136,4 +143,3 @@ as there may be subtle differences in the module closures.
 
 <a name="0.1.0"></a>
 # 0.1.0 (2017-10-19)
-
