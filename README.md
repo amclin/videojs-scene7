@@ -139,6 +139,6 @@ MIT. Copyright (c) Anthony McLin &lt;npm@anthonymclin.com&gt;
 
 [npm-link]: https://nodei.co/npm/videojs-scene7/
 
-[travis-icon]: https://travis-ci.org/amclin/videojs-scene7.svg?branch=master
+[travis-icon]: https://travis-ci.com/amclin/videojs-scene7.svg?branch=master
 
-[travis-link]: https://travis-ci.org/amclin/videojs-scene7
+[travis-link]: https://travis-ci.com/amclin/videojs-scene7
