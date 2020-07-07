@@ -1,3 +1,10 @@
+## [2.1.3](https://github.com/amclin/videojs-scene7/compare/v2.1.2...v2.1.3) (2020-07-07)
+
+
+### Bug Fixes
+
+* **deps:** [security] bump npm-registry-fetch from 4.0.3 to 4.0.5 ([8852c4f](https://github.com/amclin/videojs-scene7/commit/8852c4f579aebf81e000b5107d6091939fc001c8))
+
 ## [2.1.2](https://github.com/amclin/videojs-scene7/compare/v2.1.1...v2.1.2) (2020-04-02)
 
 
