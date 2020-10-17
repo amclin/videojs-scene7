@@ -1,3 +1,10 @@
+## [2.1.5](https://github.com/amclin/videojs-scene7/compare/v2.1.4...v2.1.5) (2020-10-17)
+
+
+### Bug Fixes
+
+* **deps:** [security] bump npm-user-validate from 1.0.0 to 1.0.1 ([494c01f](https://github.com/amclin/videojs-scene7/commit/494c01f0ac1f39eb98efadfe0e4b7f52bb10df94))
+
 ## [2.1.4](https://github.com/amclin/videojs-scene7/compare/v2.1.3...v2.1.4) (2020-07-16)
 
 
