@@ -92,7 +92,7 @@
     "karma-chrome-launcher": "^3.0.0",
     "karma-coverage": "^2.0.1",
     "karma-detect-browsers": "^2.2.5",
-    "karma-firefox-launcher": "^1.0.1",
+    "karma-firefox-launcher": "^2.0.0",
     "karma-ie-launcher": "^1.0.0",
     "karma-qunit": "^4.0.0",
     "karma-safari-applescript-launcher": "^0.1.0",
