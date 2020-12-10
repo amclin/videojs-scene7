@@ -1,3 +1,10 @@
+## [2.1.7](https://github.com/amclin/videojs-scene7/compare/v2.1.6...v2.1.7) (2020-12-10)
+
+
+### Bug Fixes
+
+* **deps:** [security] bump ini from 1.3.5 to 1.3.7 ([5e3922d](https://github.com/amclin/videojs-scene7/commit/5e3922d833da7d77340f98e9047d1b309a05b30e))
+
 ## [2.1.6](https://github.com/amclin/videojs-scene7/compare/v2.1.5...v2.1.6) (2020-11-18)
 
 
