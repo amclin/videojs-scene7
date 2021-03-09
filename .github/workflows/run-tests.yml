@@ -10,10 +10,8 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
-
+  test:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: ['12', '14', '15']
@@ -50,7 +48,12 @@ jobs:
       uses: GabrielBB/xvfb-action@v1 # Framebuffer needed so that Chrome and Firefox will run non-headless
       with:
         run: npm test
-    - name: Coveralls
+  finish:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+    - name: Coveralls Finished
       uses: coverallsapp/github-action@master
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ secrets.github_token }}
+        parallel-finished: true
