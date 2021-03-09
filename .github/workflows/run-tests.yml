@@ -28,7 +28,8 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-        run: npm ci
+    - name: NPM install
+      run: npm ci
     - name: Include VideoJS ${{ matrix.videojs-version }}
     # Check if the current version is equal to the major version for the environment matrix
     # - run: 'export IS_INSTALLED="$(npm list video.js | grep "video.js@$VJS")"'
