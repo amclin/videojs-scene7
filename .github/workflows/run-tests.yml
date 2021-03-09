@@ -31,14 +31,16 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     # Check if the current version is equal to the major version for the environment matrix
-    - run: 'export IS_INSTALLED="$(npm list video.js | grep "video.js@$VJS")"'
+    # - run: 'export IS_INSTALLED="$(npm list video.js | grep "video.js@$VJS")"'
     # Install the target version for the test matrix (skipping if already matched)
-    - run: |
-        if [ -z "$IS_INSTALLED" ]; then
-          echo "INSTALLING video.js@>=$VJS.0.0-RC.0 <$(($VJS+1)).0.0";
-          npm i "video.js@>=$VJS.0.0-RC.0 <\$(($VJS+1)).0.0";
-        else \
-          echo "video.js@$VJS ALREADY INSTALLED";
-        fi
+    # - run: |
+    #     if [ -z "$IS_INSTALLED" ]; then
+    #       echo "INSTALLING video.js@>=$VJS.0.0-RC.0 <$(($VJS+1)).0.0";
+    #       npm i "video.js@>=$VJS.0.0-RC.0 <\$(($VJS+1)).0.0";
+    #     else \
+    #       echo "video.js@$VJS ALREADY INSTALLED";
+    #     fi
+    # Install the latest version of VideoJS for the target major version in the build matrix
+    - run: npm install "video.js@>=${{ matrix.videojs-version }}.0.0 <$((${{ matrix.videojs-version}}+1)).0.0"
     - run: npm run build --if-present
     - run: npm test
