@@ -1,0 +1,56 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Run Tests
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ['12', '14', '15']
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        videojs-version: [5, 6, 7]
+    env:
+      VJS: ${{ matrix.videojs-version }}
+      DISPLAY: 99.0
+
+    steps:
+    - name: "Checkout"
+      uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: NPM install
+      run: npm ci
+    - name: Include VideoJS ${{ matrix.videojs-version }}
+      run: npm install "video.js@>=${{ matrix.videojs-version }}.0.0 <$((${{ matrix.videojs-version}}+1)).0.0"
+    - name: Build
+      run: npm run build --if-present
+    - name: Test NodeJS ${{ matrix.node-version }} with VideoJS ${{ matrix.videojs-version }}
+      uses: GabrielBB/xvfb-action@v1 # Framebuffer needed so that Chrome and Firefox will run non-headless
+      with:
+        run: npm test
+    - name: Coveralls Parallel
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.github_token }}
+        flag-name: run-${{ matrix.node-version }}-${{ matrix.videojs-version }}
+        path-to-lcov: ./test/coverage/lcov.info
+        parallel: true
+  finish:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+    - name: Coveralls Finished
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.github_token }}
+        parallel-finished: true
