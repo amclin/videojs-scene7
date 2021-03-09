@@ -24,12 +24,14 @@ jobs:
       DISPLAY: 99.0
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }} with VideoJS ${{ matrix.videojs-version }}
+    - name: "Checkout"
+      uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm ci
+        run: npm ci
+    - name: Include VideoJS ${{ matrix.videojs-version }}
     # Check if the current version is equal to the major version for the environment matrix
     # - run: 'export IS_INSTALLED="$(npm list video.js | grep "video.js@$VJS")"'
     # Install the target version for the test matrix (skipping if already matched)
@@ -40,7 +42,11 @@ jobs:
     #     else \
     #       echo "video.js@$VJS ALREADY INSTALLED";
     #     fi
-    # Install the latest version of VideoJS for the target major version in the build matrix
-    - run: npm install "video.js@>=${{ matrix.videojs-version }}.0.0 <$((${{ matrix.videojs-version}}+1)).0.0"
-    - run: npm run build --if-present
-    - run: npm test
+    # Install the latest version of VideoJS for the target major version range in the build matrix
+      run: npm install "video.js@>=${{ matrix.videojs-version }}.0.0 <$((${{ matrix.videojs-version}}+1)).0.0"
+    - name: Build
+      run: npm run build --if-present
+    - name: Test
+      uses: GabrielBB/xvfb-action@v1 # Framebuffer needed so that Chrome and Firefox will run non-headless
+      with:
+        run: npm test
