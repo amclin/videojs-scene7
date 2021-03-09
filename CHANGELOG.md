@@ -1,3 +1,10 @@
+## [2.1.8](https://github.com/amclin/videojs-scene7/compare/v2.1.7...v2.1.8) (2021-03-09)
+
+
+### Bug Fixes
+
+* **deps:** [security] bump socket.io from 2.3.0 to 2.4.1 ([cc9620e](https://github.com/amclin/videojs-scene7/commit/cc9620e80c3b03d55913eee951cf0b17758726c7))
+
 ## [2.1.7](https://github.com/amclin/videojs-scene7/compare/v2.1.6...v2.1.7) (2020-12-10)
 
 
