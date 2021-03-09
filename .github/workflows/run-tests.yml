@@ -33,11 +33,12 @@ jobs:
     # Check if the current version is equal to the major version for the environment matrix
     - run: 'export IS_INSTALLED="$(npm list video.js | grep "video.js@$VJS")"'
     # Install the target version for the test matrix (skipping if already matched)
-    - 'if [ -z "$IS_INSTALLED" ]; then
-        echo "INSTALLING video.js@>=$VJS.0.0-RC.0 <$(($VJS+1)).0.0";
-        npm i "video.js@>=$VJS.0.0-RC.0 <\$(($VJS+1)).0.0";
-      else
-        echo "video.js@$VJS ALREADY INSTALLED";
-      fi'
+    - run: |
+        if [ -z "$IS_INSTALLED" ]; then
+          echo "INSTALLING video.js@>=$VJS.0.0-RC.0 <$(($VJS+1)).0.0";
+          npm i "video.js@>=$VJS.0.0-RC.0 <\$(($VJS+1)).0.0";
+        else \
+          echo "video.js@$VJS ALREADY INSTALLED";
+        fi
     - run: npm run build --if-present
     - run: npm test
