@@ -2,7 +2,7 @@
 
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=amclin/videojs-scene7)](https://dependabot.com)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
-[![Build Status][travis-icon]][travis-link]
+[![Build Status](https://github.com/amclin/videojs-scene7/actions/workflows/run-tests.yml/badge.svg)](https://github.com/amclin/videojs-scene7/actions/workflows/run-tests.yml)
 [![Coverage Status][coveralls-icon]][coveralls-link]
 [![David Dependancy Status](https://david-dm.org/amclin/videojs-scene7.svg)](https://david-dm.org/amclin/videojs-scene7)
 [![David Dev Dependancy Status](https://david-dm.org/amclin/videojs-scene7/dev-status.svg)](https://david-dm.org/amclin/videojs-scene7?type=dev)
@@ -138,7 +138,3 @@ MIT. Copyright (c) Anthony McLin &lt;npm@anthonymclin.com&gt;
 [npm-icon]: https://nodei.co/npm/videojs-scene7.png?downloads=true&downloadRank=true
 
 [npm-link]: https://nodei.co/npm/videojs-scene7/
-
-[travis-icon]: https://travis-ci.com/amclin/videojs-scene7.svg?branch=master
-
-[travis-link]: https://travis-ci.com/amclin/videojs-scene7
