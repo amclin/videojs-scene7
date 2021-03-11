@@ -87,7 +87,7 @@
     "global": "^4.3.2",
     "husky": "^4.0.0",
     "jsdoc": "^3.6.3",
-    "karma": "^5.0.4",
+    "karma": "^6.2.0",
     "karma-chrome-launcher": "^3.0.0",
     "karma-coverage": "^2.0.1",
     "karma-detect-browsers": "^2.2.5",
