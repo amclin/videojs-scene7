@@ -8,6 +8,7 @@
     "version": "5.0.2"
   },
   "scripts": {
+    "postinstall": "husky install",
     "prebuild": "npm run clean",
     "build": "npm-run-all -p build:*",
     "build:js": "npm-run-all build:js:rollup-modules build:js:rollup-umd build:js:bannerize build:js:uglify",
@@ -31,8 +32,8 @@
     "watch:js-umd": "rollup -c scripts/umd.rollup.config.js -w",
     "watch:test": "rollup -c scripts/test.rollup.config.js -w",
     "prepublish": "npm run build",
-    "prepush": "npm run test",
-    "precommit": "npm run docs:toc && git add README.md"
+    "precommit": "npm test && npm run docs:toc && git add README.md",
+    "prepush": "npm test"
   },
   "repository": {
     "type": "git",
@@ -85,7 +86,7 @@
     "coveralls": "^3.0.0",
     "doctoc": "^2.0.0",
     "global": "^4.3.2",
-    "husky": "^4.0.0",
+    "husky": "^5.1.3",
     "jsdoc": "^3.6.3",
     "karma": "^6.2.0",
     "karma-chrome-launcher": "^3.0.0",
@@ -115,12 +116,5 @@
     "extends": [
       "@commitlint/config-angular"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "npm test",
-      "pre-push": "npm run prepush"
-    }
   }
 }
