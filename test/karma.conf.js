@@ -4,9 +4,6 @@ module.exports = function(config) {
     usePhantomJS: false
   };
 
-  // On Travis CI, we can only run in Firefox and Chrome; so, enforce that.
-  if (process.env.TRAVIS) {
-    config.browsers = ['Firefox', 'travisChrome'];
   }
 
   // If no browsers are specified, we enable `karma-detect-browsers`
@@ -24,12 +21,6 @@ module.exports = function(config) {
       'node_modules/video.js/dist/video.js',
       'test/dist/bundle.js'
     ],
-    customLaunchers: {
-      travisChrome: {
-        base: 'Chrome',
-        flags: ['--no-sandbox']
-      }
-    },
     detectBrowsers: detectBrowsers,
     preprocessors: {
       'test/dist/**/*.js': ['coverage'],
