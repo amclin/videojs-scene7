@@ -4,9 +4,11 @@ module.exports = function(config) {
     usePhantomJS: false
   };
 
-  // On Travis CI, we can only run in Firefox and Chrome; so, enforce that.
-  if (process.env.TRAVIS) {
-    config.browsers = ['Firefox', 'travisChrome'];
+  // On GitHub Actions with Ubuntu 20, both Chromium and Chrome are provided, but
+  // only Chrome is launchable. See https://github.com/amclin/videojs-scene7/issues/596
+  // TODO: Remove this so Chromium is tested as well
+  if (process.env.GITHUB_ACTIONS) {
+    config.browsers = ['Firefox', 'Chrome']
   }
 
   // If no browsers are specified, we enable `karma-detect-browsers`
@@ -24,12 +26,6 @@ module.exports = function(config) {
       'node_modules/video.js/dist/video.js',
       'test/dist/bundle.js'
     ],
-    customLaunchers: {
-      travisChrome: {
-        base: 'Chrome',
-        flags: ['--no-sandbox']
-      }
-    },
     detectBrowsers: detectBrowsers,
     preprocessors: {
       'test/dist/**/*.js': ['coverage'],
