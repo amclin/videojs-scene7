@@ -1,3 +1,10 @@
+## [2.1.9](https://github.com/amclin/videojs-scene7/compare/v2.1.8...v2.1.9) (2021-03-29)
+
+
+### Bug Fixes
+
+* **deps:** [security] bump y18n from 4.0.0 to 4.0.1 ([1882d23](https://github.com/amclin/videojs-scene7/commit/1882d2330d1a160cf4aafd92c4d70c5b9d0e6141))
+
 ## [2.1.8](https://github.com/amclin/videojs-scene7/compare/v2.1.7...v2.1.8) (2021-03-09)
 
 
