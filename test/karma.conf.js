@@ -4,14 +4,7 @@ module.exports = function(config) {
     usePhantomJS: false
   };
 
-  // On GitHub Actions with Ubuntu 20, both Chromium and Chrome are provided, but
-  // only Chrome is launchable. See https://github.com/amclin/videojs-scene7/issues/596
-  // TODO: Remove this so Chromium is tested as well
-  if (process.env.GITHUB_ACTIONS) {
-    config.browsers = ['Firefox', 'Chrome']
-  }
-
-  // If no browsers are specified, we enable `karma-detect-browsers`
+  // If no browsers are explicitly specified, we enable `karma-detect-browsers`
   // this will detect all browsers that are available for testing
   if (!config.browsers.length) {
     detectBrowsers.enabled = true;
