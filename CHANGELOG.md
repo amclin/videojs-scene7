@@ -1,3 +1,10 @@
+## [2.1.10](https://github.com/amclin/videojs-scene7/compare/v2.1.9...v2.1.10) (2021-05-06)
+
+
+### Bug Fixes
+
+* **deps:** [security] bump lodash from 4.17.19 to 4.17.21 ([27fddcd](https://github.com/amclin/videojs-scene7/commit/27fddcd7b1aeae8e2c0b82bb5be2f9b2e29cfdaa))
+
 ## [2.1.9](https://github.com/amclin/videojs-scene7/compare/v2.1.8...v2.1.9) (2021-03-29)
 
 
