@@ -1,3 +1,10 @@
+## [2.1.11](https://github.com/amclin/videojs-scene7/compare/v2.1.10...v2.1.11) (2021-05-07)
+
+
+### Bug Fixes
+
+* **deps:** [security] bump hosted-git-info from 2.7.1 to 2.8.9 ([14b80ca](https://github.com/amclin/videojs-scene7/commit/14b80cae81ab3d22e03602eec5d7253668def683))
+
 ## [2.1.10](https://github.com/amclin/videojs-scene7/compare/v2.1.9...v2.1.10) (2021-05-06)
 
 
