@@ -1,3 +1,11 @@
+## [2.1.12](https://github.com/amclin/videojs-scene7/compare/v2.1.11...v2.1.12) (2021-06-08)
+
+
+### Bug Fixes
+
+* **deps:** [security] bump glob-parent from 5.1.0 to 5.1.2 ([d3af588](https://github.com/amclin/videojs-scene7/commit/d3af58853e85224ab865345a1e0c471b760ad1c6))
+* **deps:** [security] bump trim-newlines from 3.0.0 to 3.0.1 ([6a93914](https://github.com/amclin/videojs-scene7/commit/6a9391428397599fdfb9d9779373902d23fe1d25))
+
 ## [2.1.11](https://github.com/amclin/videojs-scene7/compare/v2.1.10...v2.1.11) (2021-05-07)
 
 
