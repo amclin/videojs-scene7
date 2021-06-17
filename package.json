@@ -110,7 +110,7 @@
     "sinon": "^9.0.0",
     "uglify-js": "^3.5.10",
     "video.js": "^7.10.2",
-    "videojs-standard": "^8.0.2"
+    "videojs-standard": "^9.0.0"
   },
   "commitlint": {
     "extends": [
