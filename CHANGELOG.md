@@ -1,3 +1,10 @@
+## [2.1.13](https://github.com/amclin/videojs-scene7/compare/v2.1.12...v2.1.13) (2021-06-22)
+
+
+### Bug Fixes
+
+* **deps:** [security] bump normalize-url from 6.0.0 to 6.1.0 ([6c9882f](https://github.com/amclin/videojs-scene7/commit/6c9882f6f467517cc488f216ca06361ee0c21c8a))
+
 ## [2.1.12](https://github.com/amclin/videojs-scene7/compare/v2.1.11...v2.1.12) (2021-06-08)
 
 
