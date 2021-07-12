@@ -1,6 +1,6 @@
 {
   "name": "videojs-scene7",
-  "version": "2.1.9",
+  "version": "2.1.13",
   "description": "Tech plugin for VideoJS to support Scene7 players",
   "main": "dist/videojs-scene7.cjs.js",
   "module": "dist/videojs-scene7.es.js",
@@ -86,7 +86,7 @@
     "coveralls": "^3.0.0",
     "doctoc": "^2.0.0",
     "global": "^4.3.2",
-    "husky": "^6.0.0",
+    "husky": "^7.0.1",
     "jsdoc": "^3.6.3",
     "karma": "^6.2.0",
     "karma-chrome-launcher": "^3.0.0",
@@ -110,7 +110,7 @@
     "sinon": "^10.0.0",
     "uglify-js": "^3.5.10",
     "video.js": "^7.10.2",
-    "videojs-standard": "^8.0.2"
+    "videojs-standard": "^9.0.1"
   },
   "commitlint": {
     "extends": [
