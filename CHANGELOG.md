@@ -1,3 +1,32 @@
+## [2.1.13](https://github.com/amclin/videojs-scene7/compare/v2.1.12...v2.1.13) (2021-06-22)
+
+
+### Bug Fixes
+
+* **deps:** [security] bump normalize-url from 6.0.0 to 6.1.0 ([6c9882f](https://github.com/amclin/videojs-scene7/commit/6c9882f6f467517cc488f216ca06361ee0c21c8a))
+
+## [2.1.12](https://github.com/amclin/videojs-scene7/compare/v2.1.11...v2.1.12) (2021-06-08)
+
+
+### Bug Fixes
+
+* **deps:** [security] bump glob-parent from 5.1.0 to 5.1.2 ([d3af588](https://github.com/amclin/videojs-scene7/commit/d3af58853e85224ab865345a1e0c471b760ad1c6))
+* **deps:** [security] bump trim-newlines from 3.0.0 to 3.0.1 ([6a93914](https://github.com/amclin/videojs-scene7/commit/6a9391428397599fdfb9d9779373902d23fe1d25))
+
+## [2.1.11](https://github.com/amclin/videojs-scene7/compare/v2.1.10...v2.1.11) (2021-05-07)
+
+
+### Bug Fixes
+
+* **deps:** [security] bump hosted-git-info from 2.7.1 to 2.8.9 ([14b80ca](https://github.com/amclin/videojs-scene7/commit/14b80cae81ab3d22e03602eec5d7253668def683))
+
+## [2.1.10](https://github.com/amclin/videojs-scene7/compare/v2.1.9...v2.1.10) (2021-05-06)
+
+
+### Bug Fixes
+
+* **deps:** [security] bump lodash from 4.17.19 to 4.17.21 ([27fddcd](https://github.com/amclin/videojs-scene7/commit/27fddcd7b1aeae8e2c0b82bb5be2f9b2e29cfdaa))
+
 ## [2.1.9](https://github.com/amclin/videojs-scene7/compare/v2.1.8...v2.1.9) (2021-03-29)
 
 
