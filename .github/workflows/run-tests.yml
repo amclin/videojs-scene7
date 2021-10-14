@@ -20,6 +20,7 @@ jobs:
     env:
       VJS: ${{ matrix.videojs-version }}
       DISPLAY: 99.0
+      NODE: ${{ matrix.node-version }}
 
     steps:
     - name: "Checkout"
@@ -38,19 +39,8 @@ jobs:
       uses: GabrielBB/xvfb-action@v1 # Framebuffer needed so that Chrome and Firefox will run non-headless
       with:
         run: npm test
-    - name: Coveralls Parallel
-      uses: coverallsapp/github-action@master
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v2
       with:
-        github-token: ${{ secrets.github_token }}
-        flag-name: run-${{ matrix.node-version }}-${{ matrix.videojs-version }}
-        path-to-lcov: ./test/coverage/lcov.info
-        parallel: true
-  finish:
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-    - name: Coveralls Finished
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.github_token }}
-        parallel-finished: true
+        env_vars: VJS,NODE
+        flags: unittests

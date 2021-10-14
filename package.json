@@ -31,7 +31,7 @@
     "watch:js-umd": "rollup -c scripts/umd.rollup.config.js -w",
     "watch:test": "rollup -c scripts/test.rollup.config.js -w",
     "prepublish": "npm run build",
-    "precommit": "npm test && npm run docs:toc && git add README.md",
+    "precommit": "npm test && git add README.md",
     "prepush": "npm test"
   },
   "repository": {
@@ -82,7 +82,6 @@
     "@semantic-release/npm": "^8.0.0",
     "babel-plugin-transform-object-assign": "^6.8.0",
     "bannerize": "^1.1.4",
-    "coveralls": "^3.0.0",
     "global": "^4.3.2",
     "husky": "^7.0.1",
     "jsdoc": "^3.6.3",
