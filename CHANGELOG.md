@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/amclin/videojs-scene7/compare/v2.1.14...v2.2.0) (2021-10-14)
+
+
+### Features
+
+* **deps-dev:** [security] update to latest rollup v2.58 and all plugins ([f201599](https://github.com/amclin/videojs-scene7/commit/f2015993421ee1d17dc6101fc00b450f042476da))
+
 ## [2.1.14](https://github.com/amclin/videojs-scene7/compare/v2.1.13...v2.1.14) (2021-10-14)
 
 
