@@ -43,4 +43,4 @@ jobs:
       uses: codecov/codecov-action@v2
       with:
         env_vars: VJS,NODE
-        flags: unittests
+        flags: unittests,node-${{ matrix.node-version }},vjs-${{ matrix.videojs-version }}
