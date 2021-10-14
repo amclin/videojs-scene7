@@ -113,7 +113,7 @@ MIT. Copyright (c) Anthony McLin &lt;npm@anthonymclin.com&gt;
 
 [codecov-icon]: https://codecov.io/gh/amclin/videojs-scene7/branch/master/graph/badge.svg?token=qT4GevGPZO
 
-[codecov-link]: https://codecov.io/gh/amclin/videojs-scene7)
+[codecov-link]: https://codecov.io/gh/amclin/videojs-scene7
 
 [npm-icon]: https://nodei.co/npm/videojs-scene7.png?downloads=true&downloadRank=true
 
