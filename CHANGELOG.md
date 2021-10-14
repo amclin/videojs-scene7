@@ -1,3 +1,10 @@
+## [2.1.14](https://github.com/amclin/videojs-scene7/compare/v2.1.13...v2.1.14) (2021-10-14)
+
+
+### Bug Fixes
+
+* **deps:** bump path-parse from 1.0.6 to 1.0.7 ([9c73316](https://github.com/amclin/videojs-scene7/commit/9c73316f51561bfe91f6fe8a3291b69494a407d7))
+
 ## [2.1.13](https://github.com/amclin/videojs-scene7/compare/v2.1.12...v2.1.13) (2021-06-22)
 
 
