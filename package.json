@@ -82,7 +82,6 @@
     "@semantic-release/npm": "^8.0.0",
     "babel-plugin-transform-object-assign": "^6.8.0",
     "bannerize": "^1.1.4",
-    "coveralls": "^3.0.0",
     "global": "^4.3.2",
     "husky": "^7.0.1",
     "jsdoc": "^3.6.3",
