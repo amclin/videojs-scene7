@@ -39,12 +39,12 @@ jobs:
       uses: GabrielBB/xvfb-action@v1 # Framebuffer needed so that Chrome and Firefox will run non-headless
       with:
         run: npm test
-    - name: Codecov
-      run: npm run codecov
+    # - name: Codecov
+    #   run: npm run codecov
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v2
       with:
-        directory: ./test/coverage/
+        # directory: ./test/coverage/
         env_vars: VJS,NODE
-        files: ./lcov.info
+        # files: ./lcov.info
         flags: unittests
