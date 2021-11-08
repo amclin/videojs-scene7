@@ -104,7 +104,7 @@
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-multi-entry": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.0.5",
-    "sinon": "^11.1.1",
+    "sinon": "^12.0.1",
     "uglify-js": "^3.5.10",
     "video.js": "^7.10.2",
     "videojs-standard": "^9.0.1"
