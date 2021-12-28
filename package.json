@@ -73,7 +73,7 @@
   "devDependencies": {
     "@babel/core": "^7.5.4",
     "@babel/preset-env": "^7.5.4",
-    "@commitlint/cli": "^15.0.0",
+    "@commitlint/cli": "^16.0.1",
     "@commitlint/config-angular": "^15.0.0",
     "@semantic-release/changelog": "^6.0.0",
     "@semantic-release/exec": "^6.0.1",
