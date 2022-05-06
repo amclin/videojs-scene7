@@ -1,3 +1,10 @@
+## [2.2.2](https://github.com/amclin/videojs-scene7/compare/v2.2.1...v2.2.2) (2022-05-06)
+
+
+### Bug Fixes
+
+* **deps:** bump ajv from 6.10.0 to 6.12.6 ([48df671](https://github.com/amclin/videojs-scene7/commit/48df671817397f3a39d822d70a03ef588e05eabb))
+
 ## [2.2.1](https://github.com/amclin/videojs-scene7/compare/v2.2.0...v2.2.1) (2022-05-06)
 
 
