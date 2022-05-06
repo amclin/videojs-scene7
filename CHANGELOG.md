@@ -1,3 +1,10 @@
+## [2.2.1](https://github.com/amclin/videojs-scene7/compare/v2.2.0...v2.2.1) (2022-05-06)
+
+
+### Bug Fixes
+
+* **deps:** bump engine.io from 6.1.0 to 6.1.1 ([adebcc3](https://github.com/amclin/videojs-scene7/commit/adebcc3efa820b4630a5645470c1fbde0b84aef5))
+
 # [2.2.0](https://github.com/amclin/videojs-scene7/compare/v2.1.14...v2.2.0) (2021-10-14)
 
 
