@@ -1,3 +1,10 @@
+## [2.2.3](https://github.com/amclin/videojs-scene7/compare/v2.2.2...v2.2.3) (2022-05-09)
+
+
+### Bug Fixes
+
+* **deps:** bump node-fetch from 2.6.6 to 2.6.7 ([d047e51](https://github.com/amclin/videojs-scene7/commit/d047e511fd8560969ab18d792314129550a98232))
+
 ## [2.2.2](https://github.com/amclin/videojs-scene7/compare/v2.2.1...v2.2.2) (2022-05-06)
 
 
