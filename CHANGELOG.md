@@ -1,3 +1,11 @@
+## [2.2.4](https://github.com/amclin/videojs-scene7/compare/v2.2.3...v2.2.4) (2022-05-10)
+
+
+### Bug Fixes
+
+* **deps:** bump follow-redirects from 1.14.5 to 1.15.0 ([5cf5380](https://github.com/amclin/videojs-scene7/commit/5cf5380847d8943dd4e1ac25b8534d5aab87fce6))
+* **deps:** bump log4js from 6.3.0 to 6.4.6 ([8d8c7d6](https://github.com/amclin/videojs-scene7/commit/8d8c7d6d2700a73c47a3d7ce394bf4578a6d2640))
+
 ## [2.2.3](https://github.com/amclin/videojs-scene7/compare/v2.2.2...v2.2.3) (2022-05-09)
 
 

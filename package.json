@@ -1,6 +1,6 @@
 {
   "name": "videojs-scene7",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "description": "Tech plugin for VideoJS to support Scene7 players",
   "main": "dist/videojs-scene7.cjs.js",
   "module": "dist/videojs-scene7.es.js",
