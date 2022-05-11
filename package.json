@@ -83,7 +83,7 @@
     "babel-plugin-transform-object-assign": "^6.8.0",
     "bannerize": "^1.1.4",
     "global": "^4.3.2",
-    "husky": "^7.0.1",
+    "husky": "^8.0.1",
     "jsdoc": "^3.6.3",
     "karma": "^6.2.0",
     "karma-chrome-launcher": "^3.0.0",
