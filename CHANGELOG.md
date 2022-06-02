@@ -1,3 +1,10 @@
+## [2.2.5](https://github.com/amclin/videojs-scene7/compare/v2.2.4...v2.2.5) (2022-06-02)
+
+
+### Bug Fixes
+
+* **deps:** bump npm from 8.9.0 to 8.11.0 ([f4146b2](https://github.com/amclin/videojs-scene7/commit/f4146b225bb6fa5d1c53f34c25b9833d1e173ae0))
+
 ## [2.2.4](https://github.com/amclin/videojs-scene7/compare/v2.2.3...v2.2.4) (2022-05-10)
 
 
