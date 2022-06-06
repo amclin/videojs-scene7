@@ -1,3 +1,10 @@
+## [2.2.6](https://github.com/amclin/videojs-scene7/compare/v2.2.5...v2.2.6) (2022-06-06)
+
+
+### Bug Fixes
+
+* **deps:** bump ansi-regex from 5.0.0 to 5.0.1 ([83b1fff](https://github.com/amclin/videojs-scene7/commit/83b1fff6071de3d444a89d656e9d4ec4a4e3782e))
+
 ## [2.2.5](https://github.com/amclin/videojs-scene7/compare/v2.2.4...v2.2.5) (2022-06-02)
 
 
