@@ -1,3 +1,10 @@
+## [2.2.7](https://github.com/amclin/videojs-scene7/compare/v2.2.6...v2.2.7) (2022-06-22)
+
+
+### Bug Fixes
+
+* **deps:** bump shell-quote from 1.6.1 to 1.7.3 ([bc2f905](https://github.com/amclin/videojs-scene7/commit/bc2f90537d6fe3978ad462eadfcea43fce2bd85d))
+
 ## [2.2.6](https://github.com/amclin/videojs-scene7/compare/v2.2.5...v2.2.6) (2022-06-06)
 
 
