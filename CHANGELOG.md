@@ -1,3 +1,10 @@
+## [2.2.8](https://github.com/amclin/videojs-scene7/compare/v2.2.7...v2.2.8) (2022-10-25)
+
+
+### Bug Fixes
+
+* **deps:** bump @xmldom/xmldom from 0.7.5 to 0.7.6 ([3454d85](https://github.com/amclin/videojs-scene7/commit/3454d85003c4994acc43eea488b6c56882ff32da))
+
 ## [2.2.7](https://github.com/amclin/videojs-scene7/compare/v2.2.6...v2.2.7) (2022-06-22)
 
 
