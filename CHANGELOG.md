@@ -1,3 +1,10 @@
+## [2.2.9](https://github.com/amclin/videojs-scene7/compare/v2.2.8...v2.2.9) (2022-11-15)
+
+
+### Bug Fixes
+
+* **deps:** bump minimatch from 3.0.4 to 3.1.2 ([8f5cccd](https://github.com/amclin/videojs-scene7/commit/8f5cccdbd303c8feb2c789d0f0cef84d6aa64efb))
+
 ## [2.2.8](https://github.com/amclin/videojs-scene7/compare/v2.2.7...v2.2.8) (2022-10-25)
 
 
