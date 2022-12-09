@@ -98,7 +98,7 @@
     "npm-run-all": "^4.0.2",
     "qunit": "^2.9.2",
     "rimraf": "^3.0.0",
-    "rollup": "^2.58.0",
+    "rollup": "^3.7.0",
     "@rollup/plugin-babel": "^6.0.2",
     "@rollup/plugin-commonjs": "^23.0.2",
     "@rollup/plugin-json": "^5.0.1",
