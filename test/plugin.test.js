@@ -28,7 +28,7 @@ const testOptions = {
 function _addS7Script() {
   // const sdktag = document.createElement('script');
 
-  // sdktag.src = 'http://s7d1.scene7.com/s7sdk/3.0/js/s7sdk/utils/Utils.js';
+  // sdktag.src = 'https://s7d1.scene7.com/s7sdk/3.0/js/s7sdk/utils/Utils.js';
   // document.head.appendChild(sdktag);
 
   window.s7sdk = s7faker;
@@ -200,20 +200,20 @@ QUnit.module('videojs-scene7', {
 
       assert.strictEqual(
         this.Scene7.s7.params.serverurl,
-        'http://s7d1.scene7.com/is/image/',
-        'defaults serverurl to http://s7d1.scene7.com/is/image/'
+        'https://s7d1.scene7.com/is/image/',
+        'defaults serverurl to https://s7d1.scene7.com/is/image/'
       );
 
       assert.strictEqual(
         this.Scene7.s7.params.videoserverurl,
-        'http://s7d1.scene7.com/is/content/',
-        'defaults videoserverurl to http://s7d1.scene7.com/is/content/'
+        'https://s7d1.scene7.com/is/content/',
+        'defaults videoserverurl to https://s7d1.scene7.com/is/content/'
       );
 
       assert.strictEqual(
         this.Scene7.s7.params.contenturl,
-        'http://s7d1.scene7.com/is/content/',
-        'defaults contenturl to http://s7d1.scene7.com/is/content/'
+        'https://s7d1.scene7.com/is/content/',
+        'defaults contenturl to https://s7d1.scene7.com/is/content/'
       );
     });
 

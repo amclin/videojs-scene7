@@ -84,23 +84,23 @@ Provide Scene7 options to VideoJS through the normal VideoJS options object or d
 ```js
 options: {
   scene7: {
-    serverurl: "http://s7d1.scene7.com/is/image/", // Path to Scene7 server
-    videoserverurl: "http://s7d1.scene7.com/is/content/", // 
+    serverurl: "https://s7d1.scene7.com/is/image/", // Path to Scene7 server
+    videoserverurl: "https://s7d1.scene7.com/is/content/", // 
   }
 }
 ```
 
 ### `serverurl`
 
-URL to the image API for Scene7. Default when not set is `http://s7d1.scene7.com/is/image/`
+URL to the image API for Scene7. Default when not set is `https://s7d1.scene7.com/is/image/`
 
 ### `videoserverurl`
 
-URL to the content API for Scene7. Default when not set is `http://s7d1.scene7.com/is/content/`
+URL to the content API for Scene7. Default when not set is `https://s7d1.scene7.com/is/content/`
 
 ### `contenturl`
 
-URL to the content API for Scene7 where losed caption and chapter navigation assets are located. Default when not set is `http://s7d1.scene7.com/is/content/`
+URL to the content API for Scene7 where losed caption and chapter navigation assets are located. Default when not set is `https://s7d1.scene7.com/is/content/`
 
 
 ## License
@@ -108,7 +108,7 @@ URL to the content API for Scene7 where losed caption and chapter navigation ass
 MIT. Copyright (c) Anthony McLin &lt;npm@anthonymclin.com&gt;
 
 
-[videojs]: http://videojs.com/
+[videojs]: https://videojs.com/
 
 [codecov-icon]: https://codecov.io/gh/amclin/videojs-scene7/branch/master/graph/badge.svg?token=qT4GevGPZO
 
