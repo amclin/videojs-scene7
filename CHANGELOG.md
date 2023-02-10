@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/amclin/videojs-scene7/compare/v4.0.0...v4.0.1) (2023-02-10)
+
+
+### Bug Fixes
+
+* **deps:** bump minimist from 1.2.5 to 1.2.6 ([e1d3b45](https://github.com/amclin/videojs-scene7/commit/e1d3b453fbb6f3bd0b15fbcaf8905430c29f88d0))
+
 # [4.0.0](https://github.com/amclin/videojs-scene7/compare/v3.0.0...v4.0.0) (2023-02-10)
 
 
