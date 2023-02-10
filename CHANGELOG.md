@@ -1,3 +1,18 @@
+# [4.0.0](https://github.com/amclin/videojs-scene7/compare/v3.0.0...v4.0.0) (2023-02-10)
+
+
+### Features
+
+* **security:** switch all HTTP to HTTPS ([5a89645](https://github.com/amclin/videojs-scene7/commit/5a896456b2c887f08c79257ae513a62020933070)), closes [#1034](https://github.com/amclin/videojs-scene7/issues/1034)
+
+
+### BREAKING CHANGES
+
+* **security:** defaults are now https instead of http
+
+Connections to Adobe-provided scripts are now done
+using HTTPS instead of HTTP. Should not be an issue
+
 # [3.0.0](https://github.com/amclin/videojs-scene7/compare/v2.2.11...v3.0.0) (2023-02-10)
 
 
