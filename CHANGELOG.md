@@ -1,3 +1,47 @@
+# [3.0.0](https://github.com/amclin/videojs-scene7/compare/v2.2.11...v3.0.0) (2023-02-10)
+
+
+### Bug Fixes
+
+* **deps:** bump http-cache-semantics from 4.1.0 to 4.1.1 ([9bb2687](https://github.com/amclin/videojs-scene7/commit/9bb2687079eaacb51a54f52885d2e32dd5735b4c))
+* **deps:** bump ua-parser-js from 0.7.31 to 0.7.33 ([f2f9791](https://github.com/amclin/videojs-scene7/commit/f2f9791ff6b7a71254984890f891a443a31719b1))
+
+
+### Continuous Integration
+
+* start testing Node 18 future-proofed using `lts` keyword ([ddbda81](https://github.com/amclin/videojs-scene7/commit/ddbda810fff3ca3c26f3c6fba25dbb9f71138664))
+
+
+### Features
+
+* support Node 18 and future LTS releases ([3ed1008](https://github.com/amclin/videojs-scene7/commit/3ed10084ad4d0aa7203d1c3ba7b906b31006839c))
+
+
+### BREAKING CHANGES
+
+* no longer supports Node 12
+
+Various libraries are starting to drop support for Node 12.
+While this only affects the dev dependencies of this project
+it's only a matter of time before something critical drops
+support. So to keep maintenance easy, we're dropping
+v12 now as it is past EOL already and moving to 14, 16,
+and 18 LTS versions.
+
+Recommended action: upgrade your project from Node 12
+to a later LTS release (14, 16, 18)
+* no longer supports Node 12
+
+Various libraries are starting to drop support for Node 12.
+While this only affects the dev dependencies of this project
+it's only a matter of time before something critical drops
+support. So to keep maintenance easy, we're dropping
+v12 now as it is past EOL already and moving to 14, 16,
+and 18 LTS versions.
+
+Recommended action: upgrade your project from Node 12
+to a later LTS release (14, 16, 18)
+
 ## [2.2.11](https://github.com/amclin/videojs-scene7/compare/v2.2.10...v2.2.11) (2023-01-04)
 
 
