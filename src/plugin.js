@@ -6,10 +6,10 @@ const Tech = videojs.getComponent('Tech');
 
 // Default options for the plugin.
 const defaults = {
-  serverurl: 'http://s7d1.scene7.com/is/image/',
-  videoserverurl: 'http://s7d1.scene7.com/is/content/',
+  serverurl: 'https://s7d1.scene7.com/is/image/',
+  videoserverurl: 'https://s7d1.scene7.com/is/content/',
   // specify content url for closed caption and chapter navigation asset
-  contenturl: 'http://s7d1.scene7.com/is/content/',
+  contenturl: 'https://s7d1.scene7.com/is/content/',
   // configures the icon effect when video is in paused state
   // as follows: enable,# times to appear, fade duration, auto-hide duration
   iconeffect: '0,-1,0.3,0'
@@ -727,7 +727,7 @@ class Scene7 extends Tech {
 
   /**
    * Genterate a unique id
-   * http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
+   * https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
    *
    * @return {string} A unique ID in the format x-xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx
    */
