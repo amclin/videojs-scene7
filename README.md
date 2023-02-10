@@ -103,7 +103,6 @@ URL to the content API for Scene7. Default when not set is `http://s7d1.scene7.c
 URL to the content API for Scene7 where losed caption and chapter navigation assets are located. Default when not set is `http://s7d1.scene7.com/is/content/`
 
 
-
 ## License
 
 MIT. Copyright (c) Anthony McLin &lt;npm@anthonymclin.com&gt;
