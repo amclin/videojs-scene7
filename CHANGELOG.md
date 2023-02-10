@@ -1,3 +1,12 @@
+## [4.0.3](https://github.com/amclin/videojs-scene7/compare/v4.0.2...v4.0.3) (2023-02-10)
+
+
+### Bug Fixes
+
+* **deps:** bump @xmldom/xmldom from 0.7.6 to 0.7.9 ([a03fff7](https://github.com/amclin/videojs-scene7/commit/a03fff7bc1db4a0f2c53b89c208a7ff242332568))
+* **deps:** bump minimist from 1.2.5 to 1.2.6 ([b81a6c5](https://github.com/amclin/videojs-scene7/commit/b81a6c57166b03ae7ce5104e6ddb1a6b9be6a53e))
+* **deps:** bump ua-parser-js from 0.7.31 to 0.7.33 ([56c1a55](https://github.com/amclin/videojs-scene7/commit/56c1a55b243df70d6b05853c980b1c6e58a52699))
+
 ## [4.0.2](https://github.com/amclin/videojs-scene7/compare/v4.0.1...v4.0.2) (2023-02-10)
 
 
