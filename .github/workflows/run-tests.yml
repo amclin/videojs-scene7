@@ -40,7 +40,7 @@ jobs:
       with:
         run: npm test
     - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v2
+      uses: codecov/codecov-action@v3
       with:
         env_vars: VJS,NODE
         flags: unittests,node-${{ matrix.node-version }},vjs-${{ matrix.videojs-version }}
