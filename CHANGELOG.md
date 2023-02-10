@@ -1,3 +1,10 @@
+## [4.0.2](https://github.com/amclin/videojs-scene7/compare/v4.0.1...v4.0.2) (2023-02-10)
+
+
+### Bug Fixes
+
+* rename config files to support Rollup 3 ([cc61f86](https://github.com/amclin/videojs-scene7/commit/cc61f86380479eb07dbac1785af10cb07279c706))
+
 ## [4.0.1](https://github.com/amclin/videojs-scene7/compare/v4.0.0...v4.0.1) (2023-02-10)
 
 
