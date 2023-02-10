@@ -36,11 +36,11 @@ jobs:
     - name: Build
       run: npm run build --if-present
     - name: Test NodeJS ${{ matrix.node-version }} with VideoJS ${{ matrix.videojs-version }}
-      uses: GabrielBB/xvfb-action@v1 # Framebuffer needed so that Chrome and Firefox will run non-headless
+      uses: coactions/setup-xvfb@v1 # Framebuffer needed so that Chrome and Firefox will run non-headless
       with:
         run: npm test
     - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v2
+      uses: codecov/codecov-action@v3
       with:
         env_vars: VJS,NODE
         flags: unittests,node-${{ matrix.node-version }},vjs-${{ matrix.videojs-version }}
