@@ -79,7 +79,7 @@
     "@semantic-release/exec": "^6.0.1",
     "@semantic-release/git": "^10.0.0",
     "@semantic-release/github": "^8.0.1",
-    "@semantic-release/npm": "^9.0.1",
+    "@semantic-release/npm": "^10.0.3",
     "babel-plugin-transform-object-assign": "^6.8.0",
     "bannerize": "^1.1.4",
     "global": "^4.3.2",
